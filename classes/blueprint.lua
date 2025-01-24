@@ -1,10 +1,10 @@
 BlueprintConfig = {
     SupportHorizontalAttachSpacing = 200,
-    SupportFoundationWidth = 100,
+    SupportFoundationWidth = 75,
     SupportMaxFoundationHeightDisplacement = 100, -- this with the width will determine the max angle of the support, in this case 45 degrees
     SupportMaxSegmentLength = 150,
     SupportStructureMinSegmentLength = 100,
-    SupportStructureMinDotToBranch = 0.85,
+    SupportStructureMinDotToBranch = 0.7,
     SupportStructureMaterial = "StructuralAluminiumHazard",
     MaxNodeDelegateDistance = 150,
     NodeDelegateVerticalOffset = 100,
@@ -12,33 +12,69 @@ BlueprintConfig = {
     SupportCorrectionForce = 100000,
     MaxAttemptsToBuildDevice = 15,
     DeviceRebuildTickDelay = 25,
-    MaxAttemptsToBuildLink = 15
+    MaxAttemptsToBuildLink = 15,
+
+    stopButtonName = "structure-builder-stop",
+    confirmStopButtonName = "structure-builder-confirm-stop",
+    cancelStopButtonName = "structure-builder-cancel-stop",
+    pauseButtonName = "structure-builder-pause",
 }
 --- TODO
---- wait for devices to finish constructing before detaching structure
---- Fail condition (>50% fail)
+--- Fail condition (>50% fail) (Necessary?)
 --- Side bracing (not necessary now?)
---- Fail build if no nearby foundation nodes
---- Maybe add effect when scaffolding is destroyed?
---- Save cost and dimensions to blueprint metadata
---- Make foundation test material a separate, silent material
---- More coherent code system
+--- Maybe add effect when scaffolding is destroyed? (Cosmetic)
+--- Make foundation test material a separate, silent material (not possible?)
+--- Synchronize blueprint creation for multiplayer
+--- Synchronize blueprint cancellation for multiplayer
+--- Synchronize pausing/resuming for multiplayer
 
 
 Blueprint = {
     Blueprints = {},
-    BlueprintsSwap = {}
+    BlueprintsSwap = {},
+    IdIterator = 0,
+    MasterControl = "bpRoot"
 }
 
+function Blueprint:Load()
+    AddTextControl("", self.MasterControl, "", ANCHOR_TOP_LEFT, {x = 0, y = 0}, false, "normal")
+end
+
 function Blueprint:New(pos, teamId, bp, mirror)
+
+
+
+    -- Temporary pls remove
+    local minX = math.huge
+    local minY = math.huge
+    local maxX = -math.huge
+    local maxY = -math.huge
+    for i = 1, #bp.nodeMesh do
+        local node = bp.nodeMesh[i]
+        if node.relativePos.x < minX then minX = node.relativePos.x end
+        if node.relativePos.y < minY then minY = node.relativePos.y end
+        if node.relativePos.x > maxX then maxX = node.relativePos.x end
+        if node.relativePos.y > maxY then maxY = node.relativePos.y end
+    end
+    BetterLog( {
+        minX = minX,
+        minY = minY,
+        maxX = maxX,
+        maxY = maxY
+    })
+
+    
     bp = DeepCopy(bp)
     local blueprint = {
+        id = Blueprint.IdIterator,
         pos = pos,
         teamId = teamId,
         nodeMesh = bp.nodeMesh,
+        meta = bp.meta,
         devices = bp.devices,
         assignedNodeIds = {},
         assignedDeviceIds = {},
+        delegateNodes = {},
         deviceCost = {metal = 0, energy = 0},
         structureCost = {metal = 0, energy = 0},
         totalCost = {metal = 0, energy = 0},
@@ -46,10 +82,27 @@ function Blueprint:New(pos, teamId, bp, mirror)
         testNode = SnapToWorld(pos, 2000, SNAP_NODES, teamId, -1, "").NodeIdA
 
     }
+    Blueprint.IdIterator = Blueprint.IdIterator + 1
     setmetatable(blueprint, { __index = BlueprintMetaTable })
+    
+
+    local collisionTestResult = blueprint:CheckBlueprintAreaForIntersections()
+    if collisionTestResult ~= 0 then 
+        return collisionTestResult 
+        end
+    local bpCollisionTestResult, otherBp = self:CheckNewBlueprintCollidesWithExistingBlueprints(blueprint)
+    if bpCollisionTestResult ~= 0 then 
+        return bpCollisionTestResult 
+    end
+   
+
+    blueprint:HighlightHullNodes(White(), 0.06)
+    local result = blueprint:GenerateSupportStructure()
+    if not result then return Blueprint.FailureCodes.NoFoundationsInRange end
+    blueprint:HighlightBorderAndSave()
+    blueprint:AddUIElements()
+
     self.Blueprints[#self.Blueprints + 1] = blueprint
-    blueprint:HighlightHullNodes()
-    blueprint:GenerateSupportStructure()
     blueprint:CreateStarterNodes()
     return blueprint
 end
@@ -60,12 +113,14 @@ function Blueprint:Touch(pos, teamId, bp, mirror)
         pos = pos,
         teamId = teamId,
         nodeMesh = bp.nodeMesh,
+        meta = bp.meta,
         devices = bp.devices,
         assignedNodeIds = {},
         assignedDeviceIds = {},
         deviceFailureCount = {},
         devicePendingRebuild = {},
         linkFailureCount = {},
+        delegateNodes = {},
         deviceCost = {metal = 0, energy = 0},
         structureCost = {metal = 0, energy = 0},
         totalCost = {metal = 0, energy = 0},
@@ -73,37 +128,130 @@ function Blueprint:Touch(pos, teamId, bp, mirror)
         testNode = SnapToWorld(pos, 2000, SNAP_NODES, teamId, -1, "").NodeIdA
     }
     setmetatable(blueprint, { __index = BlueprintMetaTable })
-    blueprint:HighlightHullNodes()
-    blueprint:GenerateSupportStructure(true)
+    
+    
+   
+    
+
+    local collisionTestResult = blueprint:CheckBlueprintAreaForIntersections()
+    local bpCollisionTestResult, otherBp = self:CheckNewBlueprintCollidesWithExistingBlueprints(blueprint)
+    local supportResult = blueprint:GenerateSupportStructure(true)
+    if collisionTestResult ~= 0 then 
+        blueprint:HighlightExtents(Red(), 0.06)
+        blueprint:HighlightHullNodes(Red(), 0.06)
+    elseif bpCollisionTestResult ~= 0 then 
+        blueprint:HighlightExtents(Red(), 0.06)
+        otherBp:HighlightExtents(Red(), 0.06)
+        blueprint:HighlightHullNodes(Red(), 0.06)
+    elseif not supportResult then
+        blueprint:HighlightHullNodes(Red(), 0.06)
+    else
+        blueprint:HighlightHullNodes(White(), 0.06)
+    end
+
+
     return blueprint
 end
 function Blueprint:Update(frame)
-
+    SetControlFrame(0)
     for i = 1, #self.Blueprints do
         local blueprint = self.Blueprints[i]
         blueprint:Update()
     end
-    if frame % 5 == 1 then
-        for i = 1, #self.Blueprints do
-            local blueprint = self.Blueprints[i]
-            local code = blueprint:TryBuild()
-            Log("Code: "..self.CodeNames[code])
-            if code == self.ReturnCodes.Working or code == self.ReturnCodes.Waiting then
-                self.BlueprintsSwap[#self.BlueprintsSwap + 1] = blueprint
-            
-            elseif code == self.ReturnCodes.Done then
-                BetterLog(blueprint.deviceCost)
-                BetterLog(blueprint.structureCost)
-                BetterLog(blueprint.totalCost)
-                blueprint:Cleanup()
+
+    for k = 1, 1 do
+        if frame % 5 == 0 then
+            for i = 1, #self.Blueprints do
+                local blueprint = self.Blueprints[i]
+                if blueprint.paused then
+                    self.BlueprintsSwap[#self.BlueprintsSwap + 1] = blueprint
+                    continue
+                end
+                local code = blueprint:TryBuild()
+                Log("Code: "..self.ReturnCodeToString[code])
+                if not blueprint.queueStop and (code == self.ReturnCodes.Working or code == self.ReturnCodes.Waiting or code == self.ReturnCodes.WaitingForResources or code == self.ReturnCodes.WaitingForTechnology or code == self.ReturnCodes.WaitingForDeviceConstruction) then
+                    self.BlueprintsSwap[#self.BlueprintsSwap + 1] = blueprint
+                elseif code == self.ReturnCodes.Done then
+                    BetterLog(blueprint.deviceCost)
+                    BetterLog(blueprint.structureCost)
+                    BetterLog(blueprint.totalCost)
+                    blueprint:Cleanup()
+                end
             end
+            ClearTable(self.Blueprints)
+            local temp = self.Blueprints
+            self.Blueprints = self.BlueprintsSwap
+            self.BlueprintsSwap = temp
         end
-        ClearTable(self.Blueprints)
-        local temp = self.Blueprints
-        self.Blueprints = self.BlueprintsSwap
-        self.BlueprintsSwap = temp
     end
     
+    
+end
+function Blueprint:ConfirmStopBPWithId(id)
+    for i = 1, #self.Blueprints do
+        local blueprint = self.Blueprints[i]
+        if blueprint.id == id then
+            blueprint:StopConfirmQuery()
+            return
+        end
+    end
+end
+function Blueprint:CancelStopBPWithId(id)
+    for i = 1, #self.Blueprints do
+        local blueprint = self.Blueprints[i]
+        if blueprint.id == id then
+            blueprint:StopCancel()
+            return
+        end
+    end
+end
+function Blueprint:StopBPWithId(id)
+    for i = 1, #self.Blueprints do
+        local blueprint = self.Blueprints[i]
+        if blueprint.id == id then
+            blueprint:Stop()
+            return
+        end
+    end
+end
+
+function Blueprint:TogglePauseWithId(id)
+    for i = 1, #self.Blueprints do
+        local blueprint = self.Blueprints[i]
+        if blueprint.id == id then
+            blueprint:TogglePause()
+            return
+        end
+    end
+end
+function Blueprint:CheckNewBlueprintCollidesWithExistingBlueprints(blueprint)
+    for _, existingBlueprint in pairs(self.Blueprints) do
+        if self:CheckTwoBlueprintsColliding(blueprint, existingBlueprint) then
+            return self.FailureCodes.IntersectsExistingBlueprint, existingBlueprint
+        end
+    end
+    return 0
+end 
+
+
+function Blueprint:CheckTwoBlueprintsColliding(blueprint1, blueprint2)
+    local bp1Dimensions = blueprint1.meta
+    local bp2Dimensions = blueprint2.meta
+
+    local bp1MinX = bp1Dimensions.minX + blueprint1.pos.x
+    local bp1MinY = bp1Dimensions.minY + blueprint1.pos.y
+    local bp1MaxX = bp1Dimensions.maxX + blueprint1.pos.x
+    local bp1MaxY = bp1Dimensions.maxY + blueprint1.pos.y
+
+    local bp2MinX = bp2Dimensions.minX + blueprint2.pos.x
+    local bp2MinY = bp2Dimensions.minY + blueprint2.pos.y
+    local bp2MaxX = bp2Dimensions.maxX + blueprint2.pos.x
+    local bp2MaxY = bp2Dimensions.maxY + blueprint2.pos.y
+
+    if bp1MinX > bp2MaxX or bp1MaxX < bp2MinX or bp1MinY > bp2MaxY or bp1MaxY < bp2MinY then
+        return false
+    end
+    return true
 end
 
 BlueprintMetaTable = {
@@ -111,16 +259,20 @@ BlueprintMetaTable = {
     teamId = 1,
     nodeMesh = {},
     assignedNodeIds = {},
+    meta = {},
     devices = {},
     assignedDeviceIds = {},
     deviceFailureCount = {},
     devicePendingRebuild = {},
     linkFailureCount = {},
+    delegateNodes = {},
     deviceCost = {metal = 0, energy = 0},
     structureCost = {metal = 0, energy = 0},
     totalCost = {metal = 0, energy = 0},
     mirror = 1,
-    testNode = 0
+    testNode = 0,
+    id = 0,
+    paused = false
 }
 
 Blueprint.ReturnCodes = {
@@ -129,17 +281,32 @@ Blueprint.ReturnCodes = {
     Done = 2,
     Failed = 3,
     WaitingForTechnology = 4,
-    WaitingForResources = 5
+    WaitingForResources = 5,
+    WaitingForDeviceConstruction = 6
 }
-Blueprint.CodeNames = {
+Blueprint.ReturnCodeToString = {
     [Blueprint.ReturnCodes.Working] = "Working",
     [Blueprint.ReturnCodes.Waiting] = "Waiting",
     [Blueprint.ReturnCodes.Done] = "Done",
     [Blueprint.ReturnCodes.Failed] = "Failed",
     [Blueprint.ReturnCodes.WaitingForTechnology] = "WaitingForTechnology",
-    [Blueprint.ReturnCodes.WaitingForResources] = "WaitingForResources"
+    [Blueprint.ReturnCodes.WaitingForResources] = "WaitingForResources",
+    [Blueprint.ReturnCodes.WaitingForDeviceConstruction] = "WaitingForDeviceConstruction"
 }
-
+Blueprint.FailureCodes = {
+    NoFoundationsInRange = 0,
+    IntersectsTerrain = 1,
+    OutsideOfMap = 2,
+    IntersectsExistingStructure = 3,
+    IntersectsExistingBlueprint = 4
+}
+Blueprint.FailureCodeToString = {
+    [Blueprint.FailureCodes.NoFoundationsInRange] = "NoFoundationsInRange",
+    [Blueprint.FailureCodes.IntersectsTerrain] = "IntersectsTerrain",
+    [Blueprint.FailureCodes.OutsideOfMap] = "OutsideOfMap",
+    [Blueprint.FailureCodes.IntersectsExistingStructure] = "IntersectsExistingStructure",
+    [Blueprint.FailureCodes.IntersectsExistingBlueprint] = "IntersectsExistingBlueprint"
+}
 
 function BlueprintMetaTable:TryBuild()
     local code = Blueprint.ReturnCodes.Waiting
@@ -175,7 +342,11 @@ function BlueprintMetaTable:TryBuild()
            
 
             if targetNodeIdA and targetNodeIdB and NodeExists(targetNodeIdA) and NodeExists(targetNodeIdB) then
-                if GetDeviceIdOnPlatform(targetNodeIdA, targetNodeIdB) ~= -1 then continue end
+                local id = GetDeviceIdOnPlatform(targetNodeIdA, targetNodeIdB)
+                if id ~= -1 then 
+                    self.assignedDeviceIds[deviceIndex] = id
+                    continue 
+                    end
                 local newDeviceId
                 if self.mirror == 1 then
                     newDeviceId = CreateDeviceWithFlags(self.teamId, device.saveName, targetNodeIdA, targetNodeIdB, device.t, CREATEDEVICEFLAG_PANANGLERIGHT, -1)
@@ -189,13 +360,18 @@ function BlueprintMetaTable:TryBuild()
                     if not self.deviceFailureCount[deviceIndex] then
                         self.deviceFailureCount[deviceIndex] = 1
                     elseif errorCode == CD_PREREQUISITENOTMET then
+                        -- tchnology hasn't been placed
+                        code = Blueprint.ReturnCodes.WaitingForTechnology
+                    elseif errorCode == CD_PREREQUISITECONSTRUCT then
+                        -- technology is building
                         code = Blueprint.ReturnCodes.WaitingForTechnology
                     elseif errorCode == CD_PLATFORMCONSTRUCTION then
                         -- waiting for platform to be built
                     elseif errorCode == CD_INSUFFICIENTRESOURCES then
                         code = Blueprint.ReturnCodes.WaitingForResources
-                    else
+                    elseif errorCode == CD_OBSTRUCTION then 
                         self.deviceFailureCount[deviceIndex] = self.deviceFailureCount[deviceIndex] + 1
+                    else
                     end
                     if self.deviceFailureCount[deviceIndex] > BlueprintConfig.MaxAttemptsToBuildDevice then
                         self.assignedDeviceIds[deviceIndex] = -1
@@ -251,12 +427,24 @@ function BlueprintMetaTable:TryBuild()
         end
     end
     if not nodeBuilt and not linkBuilt and not deviceBuilt then
-        code = Blueprint.ReturnCodes.Waiting
     else
         code = Blueprint.ReturnCodes.Working
     end
     if not nodeAttemptedBuild and not linkAttemptedBuild and not deviceAttemptBuild then
         code = Blueprint.ReturnCodes.Done
+        local allDevicesDone = true
+        for i = 1, #self.devices do
+            local deviceId = self.assignedDeviceIds[i]
+            if deviceId == -1 then continue end
+            local deviceDone = IsDeviceFullyBuilt(deviceId)
+            if not deviceDone then
+                allDevicesDone = false
+                break
+            end
+        end
+        if not allDevicesDone then
+            code = Blueprint.ReturnCodes.WaitingForDeviceConstruction
+        end
     end
     
    
@@ -279,6 +467,7 @@ function BlueprintMetaTable:Update()
             SpawnLine(currentWorldPos, desiredWorldPos, Green(), 0.06)
         end
     end
+    self:UpdateUIElements()
 end
 
 function BlueprintMetaTable:Cleanup()
@@ -290,6 +479,52 @@ function BlueprintMetaTable:Cleanup()
         end
     end
 
+
+    for i = 1, #self.delegateNodes do
+        DestroyProjectile(self.delegateNodes[i])
+    end
+    DeleteControl("HUD", self.controlName)
+    CancelEffect(self.lineA)
+    CancelEffect(self.lineB)
+    CancelEffect(self.lineC)
+    CancelEffect(self.lineD)
+end
+
+function BlueprintMetaTable:StopConfirmQuery()
+    SetControlFrame(0)
+
+    ShowControl(self.controlName, BlueprintConfig.stopButtonName, false)
+    ShowControl(self.controlName, BlueprintConfig.confirmStopButtonName, true)
+    ShowControl(self.controlName, BlueprintConfig.cancelStopButtonName, true)
+end
+
+function BlueprintMetaTable:StopCancel()
+    SetControlFrame(0)
+
+    ShowControl(self.controlName, BlueprintConfig.stopButtonName, true)
+    ShowControl(self.controlName, BlueprintConfig.confirmStopButtonName, false)
+    ShowControl(self.controlName, BlueprintConfig.cancelStopButtonName, false)
+end
+
+function BlueprintMetaTable:Stop()
+
+    SetControlFrame(0)
+    DeleteControl("HUD", self.controlName)
+    CancelEffect(self.lineA)
+    CancelEffect(self.lineB)
+    CancelEffect(self.lineC)
+    CancelEffect(self.lineD)
+    self.queueStop = true
+end
+
+function BlueprintMetaTable:TogglePause()
+    SetControlFrame(0)
+    self.paused = not self.paused
+    if self.paused then
+        SetControlText(self.controlName, BlueprintConfig.pauseButtonName, "Resume")
+    else
+        SetControlText(self.controlName, BlueprintConfig.pauseButtonName, "Pause")
+    end
 end
 
 function BlueprintMetaTable:LinkAllPossibleNodes(node, nodeId, nodeIndex)
@@ -311,7 +546,7 @@ function BlueprintMetaTable:LinkAllPossibleNodes(node, nodeId, nodeIndex)
         end
         local linkedId = self.assignedNodeIds[linkedIndex]
 
-        if linkedId and NodeExists(linkedId) and NodeTeam(linkedId) == self.teamId and (not IsNodeLinkedTo(nodeId, linkedId) or GetLinkMaterialSaveName(nodeId, linkedId) ~= material) then
+        if linkedId and NodeExists(linkedId) and NodeTeam(nodeId) == self.teamId and NodeTeam(linkedId) == self.teamId and (not IsNodeLinkedTo(nodeId, linkedId) or GetLinkMaterialSaveName(nodeId, linkedId) ~= material) then
             if material == BlueprintConfig.SupportStructureMaterial then 
                 EnableMaterial("StructuralAluminiumHazard", true, self.teamId % MAX_SIDES)
             end
@@ -405,6 +640,7 @@ function BlueprintMetaTable:CreateStarterNodes()
                 local centerPos = {x = (pos.x + virtualNode.pos.x) / 2, y = (pos.y + virtualNode.pos.y) / 2 - BlueprintConfig.NodeDelegateVerticalOffset}
                 EnableMaterial("StructuralAluminiumHazard", true, self.teamId % MAX_SIDES)
                 local delegateNode = CreateNode(self.teamId, BlueprintConfig.SupportStructureMaterial, closestNode, centerPos)
+                self.delegateNodes[#self.delegateNodes+1] = delegateNode
                 local finalNode = CreateNode(self.teamId, BlueprintConfig.SupportStructureMaterial, delegateNode, virtualNode.pos)
                 EnableMaterial("StructuralAluminiumHazard", false, self.teamId % MAX_SIDES)
                 self.assignedNodeIds[i] = finalNode
@@ -451,7 +687,11 @@ function BlueprintMetaTable:GenerateSupportStructure(touch)
         local target = {x = testPos.x, y = testPos.y + BlueprintConfig.MaxHeight}
         local result = CastGroundRay(testPos, target, 0)
         local rayPos = GetRayHitPosition()
-        if result > 0 and GetPositionIsFoundation(rayPos, self.teamId, self.testNode) then
+        local nodeId = GetClosestFoundationNodeId(self.teamId, rayPos)
+        local nodePosition = NodePosition(nodeId)
+        local nodePosToRayPos = {x = nodePosition.x - rayPos.x, y = nodePosition.y - rayPos.y}
+        local distSqr = nodePosToRayPos.x * nodePosToRayPos.x + nodePosToRayPos.y * nodePosToRayPos.y
+        if result > 0 and GetPositionIsFoundation(rayPos, self.teamId, self.testNode) and distSqr < BlueprintConfig.MaxNodeDelegateDistance * BlueprintConfig.MaxNodeDelegateDistance then
             GroundNodes[#GroundNodes + 1] = rayPos
             SupportNodes[#SupportNodes + 1] = {pos = supportedNodePos, targetGroundNodeIndex = #GroundNodes, id = supportedNodeIndex}
         else    
@@ -494,15 +734,7 @@ function BlueprintMetaTable:GenerateSupportStructure(touch)
     local supportTable = {}
     for i = 1, #SupportsGroundUp do
         local support = SupportsGroundUp[i]
-        local pos = support.pos
-        local pos2 = support.pos2
 
-        for j = 1, #support.supportedNodes do
-            local supportedNode = support.supportedNodes[j]
-            local supportedPos = supportedNode.pos
-        end
-
-        
         self:CreateSegmentedSupport(support, supportTable)
         
     end
@@ -534,18 +766,35 @@ function BlueprintMetaTable:MergeSupportIntoNodeMesh(supportTable)
         if node.final then
             --set the support node to link to the original node
             if not node.originalToLink then continue end -- How did we get here?
-            node.linkedTo[node.originalToLink + supportTableLength] = BlueprintConfig.SupportStructureMaterial
+            
             --set the original node to link to the support node
-            newNodes[node.originalToLink + supportTableLength].linkedTo[supportNodeIndex] = BlueprintConfig.SupportStructureMaterial
+
+            local originalLinkIndex = node.originalToLink + supportTableLength
+            local originalNode = newNodes[originalLinkIndex]
+
+            
+            for nextLinkedToIndex, _ in pairs(originalNode.linkedTo) do
+                local newNode = newNodes[nextLinkedToIndex]
+                if not newNode.hullNode then continue end
+
+                
+                node.linkedTo[nextLinkedToIndex] = BlueprintConfig.SupportStructureMaterial
+                newNode.linkedTo[supportNodeIndex] = BlueprintConfig.SupportStructureMaterial
+                
+
+            end
+            node.linkedTo[originalLinkIndex] = BlueprintConfig.SupportStructureMaterial
+            originalNode.linkedTo[supportNodeIndex] = BlueprintConfig.SupportStructureMaterial
         end
     end
+    self.nodeMesh = newNodes
     for i = 1, #self.devices do
         local device = self.devices[i]
         device.idA = device.idA + supportTableLength
         device.idB = device.idB + supportTableLength
     end
 
-    self.nodeMesh = newNodes
+    
 end
 
 function BlueprintMetaTable:EstablishSupportFoundations(support)
@@ -697,7 +946,7 @@ function BlueprintMetaTable:Highlight()
     end
 end
 
-function BlueprintMetaTable:HighlightHullNodes()
+function BlueprintMetaTable:HighlightHullNodes(color, duration)
     local hullNodes = self:GetHullNodes()
     
     
@@ -707,7 +956,7 @@ function BlueprintMetaTable:HighlightHullNodes()
         for linkedIndex, _ in pairs(linkedTo) do
             local linkedNode = hullNodes[linkedIndex]
             if linkedNode then
-                SpawnLine({x = node.relativePos.x * self.mirror + self.pos.x, y = node.relativePos.y + self.pos.y}, {x = linkedNode.relativePos.x * self.mirror + self.pos.x, y = linkedNode.relativePos.y + self.pos.y}, White(), 0.06)
+                SpawnLine({x = node.relativePos.x * self.mirror + self.pos.x, y = node.relativePos.y + self.pos.y}, {x = linkedNode.relativePos.x * self.mirror + self.pos.x, y = linkedNode.relativePos.y + self.pos.y}, color, duration)
             end
         end
     end
@@ -725,6 +974,8 @@ function BlueprintMetaTable:GetHullNodes()
             if result then
                 hullNodes[index] = testingNode
                 hullNodes[linkedIndex] = linkedNode
+                testingNode.hullNode = true
+                linkedNode.hullNode = true
             end
         end
     end
@@ -740,13 +991,14 @@ function BlueprintMetaTable:CheckIsLinkHullLink(nodeA, nodeB)
     local nodeAPos = nodeA.relativePos
     local nodeBPos = nodeB.relativePos
 
+    if not nodeAPos or not nodeBPos then return false end
     local link = {x = nodeBPos.x - nodeAPos.x, y = nodeBPos.y - nodeAPos.y}
 
     for linkedIndex, _ in pairs(nodeA.linkedTo) do
         local linkedNode = self.nodeMesh[linkedIndex]
         if linkedNode == nodeB then continue end
         local linkedNodePos = linkedNode.relativePos
-
+        if not linkedNodePos then continue end
         local nodeAToLinked = {x = linkedNodePos.x - nodeAPos.x, y = linkedNodePos.y - nodeAPos.y}
 
         if nodeAToLinked.x * link.y - nodeAToLinked.y * link.x > 0 then
@@ -791,4 +1043,141 @@ function BlueprintMetaTable:GetClosestPointToPosIndex(points, pos)
         end
     end
     return closestIndex
+end
+
+
+function BlueprintMetaTable:CheckBlueprintAreaForIntersections()
+    local pos = self.pos
+    local minX = self.meta.minX + pos.x
+    local minY = self.meta.minY + pos.y
+    local maxX = self.meta.maxX + pos.x
+    local maxY = self.meta.maxY + pos.y
+
+    local bottomLeft = {x = minX, y = minY}
+    local bottomRight = {x = maxX, y = minY}
+    local topLeft = {x = minX, y = maxY}
+    local topRight = {x = maxX, y = maxY}
+
+
+    local terrainHit = false
+    local structureHit = false
+
+
+    local result1 = CastRay(bottomLeft, bottomRight, 0, 0)
+    local result2 = CastRay(bottomRight, topRight, 0, 0)
+    local result3 = CastRay(topRight, topLeft, 0, 0)
+    local result4 = CastRay(topLeft, bottomLeft, 0, 0)
+
+    BetterLog(result1)
+    BetterLog(result2)
+    BetterLog(result3)
+    BetterLog(result4)
+
+    if result1 == 1 or result2 == 1 or result3 == 1 or result4 == 1 then
+        terrainHit = true
+    end
+    if result1 == 2 or result2 == 2 or result3 == 2 or result4 == 2 then
+        structureHit = true
+    end
+
+    
+    if terrainHit then
+        return Blueprint.FailureCodes.IntersectsTerrain
+    end
+    if structureHit then
+        return Blueprint.FailureCodes.IntersectsExistingStructure
+    end
+    return 0
+end
+
+
+function BlueprintMetaTable:HighlightExtents(color, duration)
+
+    local pos = self.pos
+    local minX = self.meta.minX + pos.x
+    local minY = self.meta.minY + pos.y
+    local maxX = self.meta.maxX + pos.x
+    local maxY = self.meta.maxY + pos.y
+
+    local bottomLeft = {x = minX, y = minY}
+    local bottomRight = {x = maxX, y = minY}
+    local topLeft = {x = minX, y = maxY}
+    local topRight = {x = maxX, y = maxY}
+
+    SpawnLine(bottomLeft, bottomRight, color, duration)
+    SpawnLine(bottomRight, topRight, color, duration)
+    SpawnLine(topRight, topLeft, color, duration)
+    SpawnLine(topLeft, bottomLeft, color, duration)
+
+end
+
+function BlueprintMetaTable:HighlightBorderAndSave()
+    local color = Green()
+    local duration = math.huge
+    local pos = self.pos
+    local minX = self.meta.minX + pos.x
+    local minY = self.meta.minY + pos.y
+    local maxX = self.meta.maxX + pos.x
+    local maxY = self.meta.maxY + pos.y
+
+    local bottomLeft = {x = minX, y = minY}
+    local bottomRight = {x = maxX, y = minY}
+    local topLeft = {x = minX, y = maxY}
+    local topRight = {x = maxX, y = maxY}
+
+    local lineA = SpawnLine(bottomLeft, bottomRight, color, duration)
+    local lineB = SpawnLine(bottomRight, topRight, color, duration)
+    local lineC = SpawnLine(topRight, topLeft, color, duration)
+    local lineD = SpawnLine(topLeft, bottomLeft, color, duration)
+
+    self.lineA = lineA
+    self.lineB = lineB
+    self.lineC = lineC
+    self.lineD = lineD
+end
+
+function BlueprintMetaTable:AddUIElements()
+    if self.teamId ~= GetLocalTeamId() then return end
+    SetControlFrame(0)
+
+    local screenPos = WorldToScreen(self.pos)
+    self.controlName = "structure-builder-" .. self.id
+
+    AddTextControl("HUD", self.controlName, "", ANCHOR_TOP_LEFT, screenPos, false, "default")
+    
+
+    local stopPos = {x = self.pos.x + self.meta.maxX, y = self.pos.y + self.meta.minY}
+    local stopScreenPos = WorldToScreen(stopPos)
+    stopScreenPos = {x = stopScreenPos.x - screenPos.x, y = stopScreenPos.y - screenPos.y}
+    AddTextButtonControl(self.controlName,  BlueprintConfig.stopButtonName, "Stop", ANCHOR_TOP_LEFT, stopScreenPos, false, "Readout")
+    SetButtonCallback(self.controlName, BlueprintConfig.stopButtonName, self.id)
+    AddTextButtonControl(self.controlName, BlueprintConfig.cancelStopButtonName, "Cancel", ANCHOR_TOP_LEFT, stopScreenPos, false, "Readout")
+    SetButtonCallback(self.controlName, BlueprintConfig.cancelStopButtonName, self.id)
+    local confirmPos = {x = stopScreenPos.x + 50, y = stopScreenPos.y}
+    AddTextButtonControl(self.controlName, BlueprintConfig.confirmStopButtonName, "Confirm", ANCHOR_TOP_LEFT, confirmPos, false, "Readout")
+    SetButtonCallback(self.controlName, BlueprintConfig.confirmStopButtonName, self.id)
+    
+    local pausePos = {x = stopScreenPos.x, y = stopScreenPos.y + 10}
+    AddTextButtonControl(self.controlName, BlueprintConfig.pauseButtonName, "Pause", ANCHOR_TOP_LEFT, pausePos, false, "Readout")
+    SetButtonCallback(self.controlName, BlueprintConfig.pauseButtonName, self.id)
+    
+    ShowControl(self.controlName, BlueprintConfig.confirmStopButtonName, false)
+    ShowControl(self.controlName, BlueprintConfig.cancelStopButtonName, false)
+end
+
+function BlueprintMetaTable:UpdateUIElements()
+    local screenPos = WorldToScreen(self.pos)
+
+    SetControlRelativePos("HUD", self.controlName, screenPos)
+
+    local stopPos = {x = self.pos.x + self.meta.maxX, y = self.pos.y + self.meta.minY}
+    local stopScreenPos = WorldToScreen(stopPos)
+
+    stopScreenPos = {x = stopScreenPos.x - screenPos.x, y = stopScreenPos.y - screenPos.y}
+    SetControlRelativePos(self.controlName, BlueprintConfig.stopButtonName, stopScreenPos)
+    SetControlRelativePos(self.controlName, BlueprintConfig.cancelStopButtonName, stopScreenPos)
+    local confirmPos = {x = stopScreenPos.x + 50, y = stopScreenPos.y}
+    SetControlRelativePos(self.controlName, BlueprintConfig.confirmStopButtonName, confirmPos)
+    local pausePos = {x = stopScreenPos.x, y = stopScreenPos.y + 10}
+    SetControlRelativePos(self.controlName, BlueprintConfig.pauseButtonName, pausePos)
 end

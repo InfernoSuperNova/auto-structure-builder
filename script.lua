@@ -1,4 +1,4 @@
---virtual nodes, already sorted into order of placement
+
 
 
 dofile(path .. "/classes/blueprint.lua")
@@ -16,6 +16,24 @@ AssignedNodeIds =
 
 
 NewBlueprint = {
+    meta = {
+        minX = 0,
+        minY = 0,
+        maxX = 0,
+        maxY = 0,
+        totalCost = {
+            metal = 0,
+            energy = 0
+        },
+        structureCost = {
+            metal = 0,
+            energy = 0
+        },
+        deviceCost = {
+            metal = 0,
+            energy = 0
+        }
+    },
     nodeMesh = {},
     devices = {},
 }
@@ -82,7 +100,15 @@ function OnLinkCreated(teamId, saveName, nodeA, nodeB, pos1, pos2, extrusion)
     if idA and idB then
         NewBlueprint.nodeMesh[idA].linkedTo[idB] = saveName
         NewBlueprint.nodeMesh[idB].linkedTo[idA] = saveName
+        local cost = GetLinkCost(nodeA, pos2, saveName, false)
+        local structureCost = NewBlueprint.meta.structureCost
+        local totalCost = NewBlueprint.meta.totalCost
+        structureCost.metal = structureCost.metal + cost.metal
+        structureCost.energy = structureCost.energy + cost.energy
+        totalCost.metal = totalCost.metal + cost.metal
+        totalCost.energy = totalCost.energy + cost.energy
     end
+
 end
 
 function OnLinkDestroyed(teamId, saveName, nodeA, nodeB, breakType)
@@ -91,7 +117,15 @@ function OnLinkDestroyed(teamId, saveName, nodeA, nodeB, breakType)
     if idA and idB then
         NewBlueprint.nodeMesh[idA].linkedTo[idB] = nil
         NewBlueprint.nodeMesh[idB].linkedTo[idA] = nil
+        local cost = GetLinkCost(nodeA, pos2, saveName, false)
+        local structureCost = NewBlueprint.meta.structureCost
+        local totalCost = NewBlueprint.meta.totalCost
+        structureCost.metal = structureCost.metal - cost.metal
+        structureCost.energy = structureCost.energy - cost.energy
+        totalCost.metal = totalCost.metal - cost.metal
+        totalCost.energy = totalCost.energy - cost.energy
     end
+
 end
 
 function OnDeviceCreated(teamId, deviceId, saveName, nodeA, nodeB, t, upgradedId)
@@ -99,14 +133,65 @@ function OnDeviceCreated(teamId, deviceId, saveName, nodeA, nodeB, t, upgradedId
     local idB = AssignedNodeIds[nodeB]
     if idA and idB then
         NewBlueprint.devices[#NewBlueprint.devices + 1] = {idA = idA, idB = idB, saveName = saveName, t = t}
+        local cost = GetDeviceCost(saveName)
+        local deviceCost = NewBlueprint.meta.deviceCost
+        local totalCost = NewBlueprint.meta.totalCost
+        deviceCost.metal = deviceCost.metal + cost.metal
+        deviceCost.energy = deviceCost.energy + cost.energy
+        totalCost.metal = totalCost.metal + cost.metal
+        totalCost.energy = totalCost.energy + cost.energy
     end
+
 end
+
+function OnDeviceDeleted(teamId, deviceId, saveName, nodeA, nodeB, t)
+
+    for i = 1, #NewBlueprint.devices do
+        if NewBlueprint.devices[i].idA == nodeA and NewBlueprint.devices[i].idB == nodeB then
+            table.remove(NewBlueprint.devices, i)
+            local cost = GetDeviceCost(saveName)
+            local deviceCost = NewBlueprint.meta.deviceCost
+            local totalCost = NewBlueprint.meta.totalCost
+            deviceCost.metal = deviceCost.metal - cost.metal
+            deviceCost.energy = deviceCost.energy - cost.energy
+            totalCost.metal = totalCost.metal - cost.metal
+            totalCost.energy = totalCost.energy - cost.energy
+            break
+        end
+    end
+
+
+end
+
 
 
 
 
 function OnKey(key, down)
     if key == "k" and down then
+        local minX = 0
+        local minY = 0
+        local maxX = 0
+        local maxY = 0
+        for k, v in pairs(NewBlueprint.nodeMesh) do
+            if v.relativePos.x < minX then
+                minX = v.relativePos.x
+            end
+            if v.relativePos.y < minY then
+                minY = v.relativePos.y
+            end
+            if v.relativePos.x > maxX then
+                maxX = v.relativePos.x
+            end
+            if v.relativePos.y > maxY then
+                maxY = v.relativePos.y
+            end
+        end
+        NewBlueprint.meta.minX = minX
+        NewBlueprint.meta.minY = minY
+        NewBlueprint.meta.maxX = maxX
+        NewBlueprint.meta.maxY = maxY
+
         BetterLog(NewBlueprint)
     end
     if key == "l" and down then
@@ -117,11 +202,15 @@ function OnKey(key, down)
         local teamId = GetLocalTeamId()
         local pos = ScreenToWorld(GetMousePos())
         local blueprint = Blueprint:New(pos, teamId, CurrentBlueprint, false) -- Change to set which structure to build
+
+        if type(blueprint) == "number" then
+            BetterLog("Error: Blueprint failure: " .. Blueprint.FailureCodeToString[blueprint])
+        end
     end
 
 end
 Preview = false
-CurrentBlueprint = Car2
+CurrentBlueprint = SavedBlueprints.Car2
 function Update(frame)
 
     
@@ -134,6 +223,7 @@ function Update(frame)
     Blueprint:Update(frame)
 end
 
+
 function ClearTable(t)
     for k, v in pairs(t) do
         t[k] = nil
@@ -142,11 +232,28 @@ end
 
 function GetPositionIsFoundation(pos, teamId, dummyNode)
     local pos = {x = pos.x, y = pos.y + 1}
-    EnableMaterial("StructuralAluminiumHazard", true, teamId % MAX_SIDES)
-    local result = CreateNode(teamId, "StructuralAluminiumHazard", dummyNode, pos)
-    EnableMaterial( "StructuralAluminiumHazard", false, teamId % MAX_SIDES)
+    EnableMaterial("FoundationTest", true, teamId % MAX_SIDES)
+    local result = CreateNode(teamId, "FoundationTest", dummyNode, pos)
+    EnableMaterial( "FoundationTest", false, teamId % MAX_SIDES)
     DestroyLink(teamId, dummyNode, result)
     return result > 0
 end
+
+function OnControlActivated(name, code, doubleClick)
+
+    if name == BlueprintConfig.stopButtonName then
+        Blueprint:ConfirmStopBPWithId(code)
+    end
+    if name == BlueprintConfig.confirmStopButtonName then
+        Blueprint:StopBPWithId(code)
+    end
+    if name == BlueprintConfig.cancelStopButtonName then
+        Blueprint:CancelStopBPWithId(code)
+    end
+    if name == BlueprintConfig.pauseButtonName then
+        Blueprint:TogglePauseWithId(code)
+    end
+end
+
 
 
