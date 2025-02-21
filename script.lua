@@ -4,6 +4,7 @@
 dofile(path .. "/classes/blueprint.lua")
 dofile(path .. "/BetterLog.lua")
 dofile(path .. "/savedBlueprints.lua")
+dofile(path .. "/hudManager.lua")
 dofile("scripts/forts.lua")
 
 AssignedNodeIds =
@@ -15,7 +16,7 @@ AssignedNodeIds =
 
 
 
-NewBlueprint = {
+BlueprintTemplate = {
     meta = {
         minX = 0,
         minY = 0,
@@ -66,17 +67,17 @@ function OnNodeDestroyed(nodeId, selectable)
     if AssignedNodeIds[nodeId] then
         local id = AssignedNodeIds[nodeId]
         AssignedNodeIds[nodeId] = nil
-        NewBlueprint.nodeMesh[id] = nil
+        BlueprintTemplate.nodeMesh[id] = nil
         -- Iterate through and reduce by one all the ids that are greater than the one that was destroyed
         for k, v in pairs(AssignedNodeIds) do
             if v > id then
                 AssignedNodeIds[k] = v - 1
             end
         end
-        for k, v in pairs(NewBlueprint.nodeMesh) do
+        for k, v in pairs(BlueprintTemplate.nodeMesh) do
             if k > id then
-                NewBlueprint.nodeMesh[k - 1] = v
-                NewBlueprint.nodeMesh[k] = nil
+                BlueprintTemplate.nodeMesh[k - 1] = v
+                BlueprintTemplate.nodeMesh[k] = nil
             end
             local linkedToCopy = DeepCopy(v.linkedTo)
             for linkedNodeId, material in pairs(linkedToCopy) do
@@ -98,11 +99,11 @@ function OnLinkCreated(teamId, saveName, nodeA, nodeB, pos1, pos2, extrusion)
     local idB = AssignedNodeIds[nodeB]
     
     if idA and idB then
-        NewBlueprint.nodeMesh[idA].linkedTo[idB] = saveName
-        NewBlueprint.nodeMesh[idB].linkedTo[idA] = saveName
+        BlueprintTemplate.nodeMesh[idA].linkedTo[idB] = saveName
+        BlueprintTemplate.nodeMesh[idB].linkedTo[idA] = saveName
         local cost = GetLinkCost(nodeA, pos2, saveName, false)
-        local structureCost = NewBlueprint.meta.structureCost
-        local totalCost = NewBlueprint.meta.totalCost
+        local structureCost = BlueprintTemplate.meta.structureCost
+        local totalCost = BlueprintTemplate.meta.totalCost
         structureCost.metal = structureCost.metal + cost.metal
         structureCost.energy = structureCost.energy + cost.energy
         totalCost.metal = totalCost.metal + cost.metal
@@ -115,11 +116,11 @@ function OnLinkDestroyed(teamId, saveName, nodeA, nodeB, breakType)
     local idA = AssignedNodeIds[nodeA]
     local idB = AssignedNodeIds[nodeB]
     if idA and idB then
-        NewBlueprint.nodeMesh[idA].linkedTo[idB] = nil
-        NewBlueprint.nodeMesh[idB].linkedTo[idA] = nil
+        BlueprintTemplate.nodeMesh[idA].linkedTo[idB] = nil
+        BlueprintTemplate.nodeMesh[idB].linkedTo[idA] = nil
         local cost = GetLinkCost(nodeA, pos2, saveName, false)
-        local structureCost = NewBlueprint.meta.structureCost
-        local totalCost = NewBlueprint.meta.totalCost
+        local structureCost = BlueprintTemplate.meta.structureCost
+        local totalCost = BlueprintTemplate.meta.totalCost
         structureCost.metal = structureCost.metal - cost.metal
         structureCost.energy = structureCost.energy - cost.energy
         totalCost.metal = totalCost.metal - cost.metal
@@ -132,10 +133,10 @@ function OnDeviceCreated(teamId, deviceId, saveName, nodeA, nodeB, t, upgradedId
     local idA = AssignedNodeIds[nodeA]
     local idB = AssignedNodeIds[nodeB]
     if idA and idB then
-        NewBlueprint.devices[#NewBlueprint.devices + 1] = {idA = idA, idB = idB, saveName = saveName, t = t}
+        BlueprintTemplate.devices[#BlueprintTemplate.devices + 1] = {idA = idA, idB = idB, saveName = saveName, t = t}
         local cost = GetDeviceCost(saveName)
-        local deviceCost = NewBlueprint.meta.deviceCost
-        local totalCost = NewBlueprint.meta.totalCost
+        local deviceCost = BlueprintTemplate.meta.deviceCost
+        local totalCost = BlueprintTemplate.meta.totalCost
         deviceCost.metal = deviceCost.metal + cost.metal
         deviceCost.energy = deviceCost.energy + cost.energy
         totalCost.metal = totalCost.metal + cost.metal
@@ -146,12 +147,12 @@ end
 
 function OnDeviceDeleted(teamId, deviceId, saveName, nodeA, nodeB, t)
 
-    for i = 1, #NewBlueprint.devices do
-        if NewBlueprint.devices[i].idA == nodeA and NewBlueprint.devices[i].idB == nodeB then
-            table.remove(NewBlueprint.devices, i)
+    for i = 1, #BlueprintTemplate.devices do
+        if BlueprintTemplate.devices[i].idA == nodeA and BlueprintTemplate.devices[i].idB == nodeB then
+            table.remove(BlueprintTemplate.devices, i)
             local cost = GetDeviceCost(saveName)
-            local deviceCost = NewBlueprint.meta.deviceCost
-            local totalCost = NewBlueprint.meta.totalCost
+            local deviceCost = BlueprintTemplate.meta.deviceCost
+            local totalCost = BlueprintTemplate.meta.totalCost
             deviceCost.metal = deviceCost.metal - cost.metal
             deviceCost.energy = deviceCost.energy - cost.energy
             totalCost.metal = totalCost.metal - cost.metal
@@ -164,7 +165,10 @@ function OnDeviceDeleted(teamId, deviceId, saveName, nodeA, nodeB, t)
 end
 
 
-
+function Load()
+    SetControlFrame(0)
+    LoadControl(path .. "/selectionui.lua", "")
+end
 
 
 function OnKey(key, down)
@@ -173,7 +177,7 @@ function OnKey(key, down)
         local minY = 0
         local maxX = 0
         local maxY = 0
-        for k, v in pairs(NewBlueprint.nodeMesh) do
+        for k, v in pairs(BlueprintTemplate.nodeMesh) do
             if v.relativePos.x < minX then
                 minX = v.relativePos.x
             end
@@ -187,12 +191,12 @@ function OnKey(key, down)
                 maxY = v.relativePos.y
             end
         end
-        NewBlueprint.meta.minX = minX
-        NewBlueprint.meta.minY = minY
-        NewBlueprint.meta.maxX = maxX
-        NewBlueprint.meta.maxY = maxY
+        BlueprintTemplate.meta.minX = minX
+        BlueprintTemplate.meta.minY = minY
+        BlueprintTemplate.meta.maxX = maxX
+        BlueprintTemplate.meta.maxY = maxY
 
-        BetterLog(NewBlueprint)
+        BetterLog(BlueprintTemplate)
     end
     if key == "l" and down then
         Preview = true

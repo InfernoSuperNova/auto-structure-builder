@@ -11937,4 +11937,2801 @@ SavedBlueprints = {
             },
         },
     },
+    Susser2 = {
+        meta = 
+        {
+            maxY = 0,
+            deviceCost = 
+            {
+                energy = 0,
+                metal = 0,
+            },
+            maxX = 800,
+            minY = -1900,
+            minX = -500,
+            totalCost = 
+            {
+                energy = 47880.64453125,
+                metal = 45623.9609375,
+            },
+            structureCost = 
+            {
+                energy = 47880.64453125,
+                metal = 45623.9609375,
+            },
+        },
+        devices = 
+        {
+        },
+        nodeMesh = 
+        {
+            [1] = 
+            {
+                relativePos = 
+                {
+                    y = 0,
+                    x = 0,
+                },
+                linkedTo = 
+                {
+                    [7] = "armour",
+                    [5] = "StructuralAluminiumBackground",
+                    [2] = "armour",
+                    [4] = "StructuralAluminiumBackground",
+                },
+            },
+            [2] = 
+            {
+                relativePos = 
+                {
+                    y = 0,
+                    x = -100,
+                },
+                linkedTo = 
+                {
+                    [1] = "armour",
+                    [3] = "armour",
+                    [4] = "StructuralAluminiumBackground",
+                    [5] = "StructuralAluminiumBackground",
+                    [6] = "StructuralAluminiumBackground",
+                    [10] = "StructuralAluminiumBackground",
+                },
+            },
+            [3] = 
+            {
+                relativePos = 
+                {
+                    y = 0,
+                    x = -200,
+                },
+                linkedTo = 
+                {
+                    [6] = "StructuralAluminiumBackground",
+                    [8] = "armour",
+                    [2] = "armour",
+                    [4] = "StructuralAluminiumBackground",
+                },
+            },
+            [4] = 
+            {
+                relativePos = 
+                {
+                    y = -150,
+                    x = -100,
+                },
+                linkedTo = 
+                {
+                    [1] = "StructuralAluminiumBackground",
+                    [2] = "StructuralAluminiumBackground",
+                    [3] = "StructuralAluminiumBackground",
+                    [5] = "StructuralAluminiumBackground",
+                    [6] = "StructuralAluminiumBackground",
+                    [11] = "StructuralAluminiumBackground",
+                    [9] = "StructuralAluminiumBackground",
+                    [10] = "StructuralAluminiumBackground",
+                },
+            },
+            [5] = 
+            {
+                relativePos = 
+                {
+                    y = -150,
+                    x = 0,
+                },
+                linkedTo = 
+                {
+                    [1] = "StructuralAluminiumBackground",
+                    [2] = "StructuralAluminiumBackground",
+                    [4] = "StructuralAluminiumBackground",
+                    [12] = "StructuralAluminiumBackground",
+                    [9] = "StructuralAluminiumBackground",
+                    [10] = "StructuralAluminiumBackground",
+                    [7] = "StructuralAluminiumBackground",
+                },
+            },
+            [6] = 
+            {
+                relativePos = 
+                {
+                    y = -150,
+                    x = -200,
+                },
+                linkedTo = 
+                {
+                    [2] = "StructuralAluminiumBackground",
+                    [3] = "StructuralAluminiumBackground",
+                    [4] = "StructuralAluminiumBackground",
+                    [11] = "StructuralAluminiumBackground",
+                    [9] = "StructuralAluminiumBackground",
+                    [13] = "StructuralAluminiumBackground",
+                    [8] = "StructuralAluminiumBackground",
+                },
+            },
+            [7] = 
+            {
+                relativePos = 
+                {
+                    y = -150,
+                    x = 100,
+                },
+                linkedTo = 
+                {
+                    [1] = "armour",
+                    [12] = "armour",
+                    [10] = "StructuralAluminiumBackground",
+                    [5] = "StructuralAluminiumBackground",
+                },
+            },
+            [8] = 
+            {
+                relativePos = 
+                {
+                    y = -150,
+                    x = -300,
+                },
+                linkedTo = 
+                {
+                    [3] = "armour",
+                    [11] = "StructuralAluminiumBackground",
+                    [13] = "armour",
+                    [6] = "StructuralAluminiumBackground",
+                },
+            },
+            [9] = 
+            {
+                relativePos = 
+                {
+                    y = -300,
+                    x = -100,
+                },
+                linkedTo = 
+                {
+                    [10] = "StructuralAluminiumBackground",
+                    [6] = "StructuralAluminiumBackground",
+                    [14] = "StructuralAluminiumBackground",
+                    [16] = "StructuralAluminiumBackground",
+                    [11] = "StructuralAluminiumBackground",
+                    [15] = "StructuralAluminiumBackground",
+                    [4] = "StructuralAluminiumBackground",
+                    [5] = "StructuralAluminiumBackground",
+                },
+            },
+            [10] = 
+            {
+                relativePos = 
+                {
+                    y = -300,
+                    x = 0,
+                },
+                linkedTo = 
+                {
+                    [5] = "StructuralAluminiumBackground",
+                    [7] = "StructuralAluminiumBackground",
+                    [9] = "StructuralAluminiumBackground",
+                    [2] = "StructuralAluminiumBackground",
+                    [12] = "StructuralAluminiumBackground",
+                    [14] = "StructuralAluminiumBackground",
+                    [15] = "StructuralAluminiumBackground",
+                    [4] = "StructuralAluminiumBackground",
+                    [17] = "StructuralAluminiumBackground",
+                },
+            },
+            [11] = 
+            {
+                relativePos = 
+                {
+                    y = -300,
+                    x = -200,
+                },
+                linkedTo = 
+                {
+                    [18] = "StructuralAluminiumBackground",
+                    [6] = "StructuralAluminiumBackground",
+                    [14] = "StructuralAluminiumBackground",
+                    [9] = "StructuralAluminiumBackground",
+                    [16] = "StructuralAluminiumBackground",
+                    [13] = "StructuralAluminiumBackground",
+                    [4] = "StructuralAluminiumBackground",
+                    [8] = "StructuralAluminiumBackground",
+                },
+            },
+            [12] = 
+            {
+                relativePos = 
+                {
+                    y = -300,
+                    x = 100,
+                },
+                linkedTo = 
+                {
+                    [10] = "StructuralAluminiumBackground",
+                    [7] = "armour",
+                    [17] = "armour",
+                    [15] = "StructuralAluminiumBackground",
+                    [5] = "StructuralAluminiumBackground",
+                },
+            },
+            [13] = 
+            {
+                relativePos = 
+                {
+                    y = -300,
+                    x = -300,
+                },
+                linkedTo = 
+                {
+                    [6] = "StructuralAluminiumBackground",
+                    [11] = "StructuralAluminiumBackground",
+                    [18] = "armour",
+                    [8] = "armour",
+                    [16] = "StructuralAluminiumBackground",
+                },
+            },
+            [14] = 
+            {
+                relativePos = 
+                {
+                    y = -450,
+                    x = -100,
+                },
+                linkedTo = 
+                {
+                    [10] = "StructuralAluminiumBackground",
+                    [16] = "StructuralAluminiumBackground",
+                    [23] = "StructuralAluminiumBackground",
+                    [9] = "StructuralAluminiumBackground",
+                    [11] = "StructuralAluminiumBackground",
+                    [21] = "StructuralAluminiumBackground",
+                    [15] = "StructuralAluminiumBackground",
+                    [22] = "StructuralAluminiumBackground",
+                },
+            },
+            [15] = 
+            {
+                relativePos = 
+                {
+                    y = -450,
+                    x = 0,
+                },
+                linkedTo = 
+                {
+                    [10] = "StructuralAluminiumBackground",
+                    [12] = "StructuralAluminiumBackground",
+                    [14] = "StructuralAluminiumBackground",
+                    [17] = "StructuralAluminiumBackground",
+                    [21] = "StructuralAluminiumBackground",
+                    [19] = "StructuralAluminiumBackground",
+                    [22] = "StructuralAluminiumBackground",
+                    [9] = "StructuralAluminiumBackground",
+                },
+            },
+            [16] = 
+            {
+                relativePos = 
+                {
+                    y = -450,
+                    x = -200,
+                },
+                linkedTo = 
+                {
+                    [20] = "StructuralAluminiumBackground",
+                    [23] = "StructuralAluminiumBackground",
+                    [14] = "StructuralAluminiumBackground",
+                    [9] = "StructuralAluminiumBackground",
+                    [11] = "StructuralAluminiumBackground",
+                    [18] = "StructuralAluminiumBackground",
+                    [22] = "StructuralAluminiumBackground",
+                    [13] = "StructuralAluminiumBackground",
+                },
+            },
+            [17] = 
+            {
+                relativePos = 
+                {
+                    y = -450,
+                    x = 100,
+                },
+                linkedTo = 
+                {
+                    [10] = "StructuralAluminiumBackground",
+                    [12] = "armour",
+                    [21] = "StructuralAluminiumBackground",
+                    [15] = "StructuralAluminiumBackground",
+                    [19] = "armour",
+                },
+            },
+            [18] = 
+            {
+                relativePos = 
+                {
+                    y = -450,
+                    x = -300,
+                },
+                linkedTo = 
+                {
+                    [16] = "StructuralAluminiumBackground",
+                    [20] = "armour",
+                    [11] = "StructuralAluminiumBackground",
+                    [13] = "armour",
+                    [23] = "StructuralAluminiumBackground",
+                },
+            },
+            [19] = 
+            {
+                relativePos = 
+                {
+                    y = -600,
+                    x = 100,
+                },
+                linkedTo = 
+                {
+                    [26] = "StructuralAluminiumBackground",
+                    [35] = "StructuralAluminiumBackground",
+                    [17] = "armour",
+                    [21] = "StructuralAluminiumBackground",
+                    [25] = "StructuralAluminiumBackground",
+                    [15] = "StructuralAluminiumBackground",
+                    [24] = "armour",
+                },
+            },
+            [20] = 
+            {
+                relativePos = 
+                {
+                    y = -600,
+                    x = -300,
+                },
+                linkedTo = 
+                {
+                    [23] = "StructuralAluminiumBackground",
+                    [30] = "armour",
+                    [31] = "StructuralAluminiumBackground",
+                    [28] = "StructuralAluminiumBackground",
+                    [18] = "armour",
+                    [29] = "armour",
+                    [16] = "StructuralAluminiumBackground",
+                },
+            },
+            [21] = 
+            {
+                relativePos = 
+                {
+                    y = -600,
+                    x = 0,
+                },
+                linkedTo = 
+                {
+                    [19] = "StructuralAluminiumBackground",
+                    [27] = "StructuralAluminiumBackground",
+                    [14] = "StructuralAluminiumBackground",
+                    [17] = "StructuralAluminiumBackground",
+                    [26] = "StructuralAluminiumBackground",
+                    [25] = "StructuralAluminiumBackground",
+                    [15] = "StructuralAluminiumBackground",
+                    [22] = "StructuralAluminiumBackground",
+                },
+            },
+            [22] = 
+            {
+                relativePos = 
+                {
+                    y = -600,
+                    x = -100,
+                },
+                linkedTo = 
+                {
+                    [28] = "StructuralAluminiumBackground",
+                    [23] = "StructuralAluminiumBackground",
+                    [14] = "StructuralAluminiumBackground",
+                    [27] = "StructuralAluminiumBackground",
+                    [21] = "StructuralAluminiumBackground",
+                    [25] = "StructuralAluminiumBackground",
+                    [15] = "StructuralAluminiumBackground",
+                    [16] = "StructuralAluminiumBackground",
+                },
+            },
+            [23] = 
+            {
+                relativePos = 
+                {
+                    y = -600,
+                    x = -200,
+                },
+                linkedTo = 
+                {
+                    [29] = "StructuralAluminiumBackground",
+                    [16] = "StructuralAluminiumBackground",
+                    [20] = "StructuralAluminiumBackground",
+                    [27] = "StructuralAluminiumBackground",
+                    [28] = "StructuralAluminiumBackground",
+                    [18] = "StructuralAluminiumBackground",
+                    [22] = "StructuralAluminiumBackground",
+                    [14] = "StructuralAluminiumBackground",
+                },
+            },
+            [24] = 
+            {
+                relativePos = 
+                {
+                    y = -600,
+                    x = 200,
+                },
+                linkedTo = 
+                {
+                    [26] = "StructuralAluminiumBackground",
+                    [36] = "armour",
+                    [37] = "StructuralAluminiumBackground",
+                    [90] = "StructuralAluminiumBackground",
+                    [19] = "armour",
+                    [35] = "StructuralAluminiumBackground",
+                },
+            },
+            [25] = 
+            {
+                relativePos = 
+                {
+                    y = -750,
+                    x = 0,
+                },
+                linkedTo = 
+                {
+                    [26] = "StructuralAluminiumBackground",
+                    [100] = "StructuralAluminiumBackground",
+                    [27] = "StructuralAluminiumBackground",
+                    [103] = "StructuralAluminiumBackground",
+                    [21] = "StructuralAluminiumBackground",
+                    [96] = "StructuralAluminiumBackground",
+                    [22] = "StructuralAluminiumBackground",
+                    [19] = "StructuralAluminiumBackground",
+                },
+            },
+            [26] = 
+            {
+                relativePos = 
+                {
+                    y = -750,
+                    x = 100,
+                },
+                linkedTo = 
+                {
+                    [19] = "StructuralAluminiumBackground",
+                    [93] = "StructuralAluminiumBackground",
+                    [100] = "StructuralAluminiumBackground",
+                    [24] = "StructuralAluminiumBackground",
+                    [21] = "StructuralAluminiumBackground",
+                    [25] = "StructuralAluminiumBackground",
+                    [96] = "StructuralAluminiumBackground",
+                    [35] = "StructuralAluminiumBackground",
+                },
+            },
+            [27] = 
+            {
+                relativePos = 
+                {
+                    y = -750,
+                    x = -100,
+                },
+                linkedTo = 
+                {
+                    [103] = "StructuralAluminiumBackground",
+                    [23] = "StructuralAluminiumBackground",
+                    [100] = "StructuralAluminiumBackground",
+                    [76] = "StructuralAluminiumBackground",
+                    [28] = "StructuralAluminiumBackground",
+                    [25] = "StructuralAluminiumBackground",
+                    [22] = "StructuralAluminiumBackground",
+                    [21] = "StructuralAluminiumBackground",
+                },
+            },
+            [28] = 
+            {
+                relativePos = 
+                {
+                    y = -750,
+                    x = -200,
+                },
+                linkedTo = 
+                {
+                    [103] = "StructuralAluminiumBackground",
+                    [23] = "StructuralAluminiumBackground",
+                    [20] = "StructuralAluminiumBackground",
+                    [76] = "StructuralAluminiumBackground",
+                    [34] = "StructuralAluminiumBackground",
+                    [29] = "StructuralAluminiumBackground",
+                    [22] = "StructuralAluminiumBackground",
+                    [27] = "StructuralAluminiumBackground",
+                },
+            },
+            [29] = 
+            {
+                relativePos = 
+                {
+                    y = -750,
+                    x = -300,
+                },
+                linkedTo = 
+                {
+                    [76] = "StructuralAluminiumBackground",
+                    [23] = "StructuralAluminiumBackground",
+                    [20] = "armour",
+                    [31] = "StructuralAluminiumBackground",
+                    [28] = "StructuralAluminiumBackground",
+                    [33] = "StructuralAluminiumBackground",
+                    [34] = "armour",
+                    [30] = "StructuralAluminiumBackground",
+                },
+            },
+            [30] = 
+            {
+                relativePos = 
+                {
+                    y = -600,
+                    x = -400,
+                },
+                linkedTo = 
+                {
+                    [31] = "StructuralAluminiumBackground",
+                    [32] = "armour",
+                    [20] = "armour",
+                    [29] = "StructuralAluminiumBackground",
+                },
+            },
+            [31] = 
+            {
+                relativePos = 
+                {
+                    y = -750,
+                    x = -400,
+                },
+                linkedTo = 
+                {
+                    [30] = "StructuralAluminiumBackground",
+                    [20] = "StructuralAluminiumBackground",
+                    [64] = "StructuralAluminiumBackground",
+                    [32] = "StructuralAluminiumBackground",
+                    [33] = "StructuralAluminiumBackground",
+                    [29] = "StructuralAluminiumBackground",
+                    [34] = "StructuralAluminiumBackground",
+                },
+            },
+            [32] = 
+            {
+                relativePos = 
+                {
+                    y = -750,
+                    x = -500,
+                },
+                linkedTo = 
+                {
+                    [31] = "StructuralAluminiumBackground",
+                    [30] = "armour",
+                    [33] = "StructuralAluminiumBackground",
+                    [64] = "armour",
+                },
+            },
+            [33] = 
+            {
+                relativePos = 
+                {
+                    y = -900,
+                    x = -400,
+                },
+                linkedTo = 
+                {
+                    [64] = "StructuralAluminiumBackground",
+                    [65] = "StructuralAluminiumBackground",
+                    [67] = "StructuralAluminiumBackground",
+                    [31] = "StructuralAluminiumBackground",
+                    [32] = "StructuralAluminiumBackground",
+                    [66] = "StructuralAluminiumBackground",
+                    [34] = "StructuralAluminiumBackground",
+                    [29] = "StructuralAluminiumBackground",
+                },
+            },
+            [34] = 
+            {
+                relativePos = 
+                {
+                    y = -900,
+                    x = -300,
+                },
+                linkedTo = 
+                {
+                    [77] = "StructuralAluminiumBackground",
+                    [65] = "StructuralAluminiumBackground",
+                    [76] = "StructuralAluminiumBackground",
+                    [31] = "StructuralAluminiumBackground",
+                    [28] = "StructuralAluminiumBackground",
+                    [33] = "StructuralAluminiumBackground",
+                    [29] = "armour",
+                    [66] = "armour",
+                },
+            },
+            [35] = 
+            {
+                relativePos = 
+                {
+                    y = -750,
+                    x = 200,
+                },
+                linkedTo = 
+                {
+                    [26] = "StructuralAluminiumBackground",
+                    [36] = "StructuralAluminiumBackground",
+                    [37] = "StructuralAluminiumBackground",
+                    [24] = "StructuralAluminiumBackground",
+                    [90] = "StructuralAluminiumBackground",
+                    [93] = "StructuralAluminiumBackground",
+                    [96] = "StructuralAluminiumBackground",
+                    [19] = "StructuralAluminiumBackground",
+                },
+            },
+            [36] = 
+            {
+                relativePos = 
+                {
+                    y = -600,
+                    x = 300,
+                },
+                linkedTo = 
+                {
+                    [35] = "StructuralAluminiumBackground",
+                    [37] = "StructuralAluminiumBackground",
+                    [38] = "armour",
+                    [39] = "armour",
+                    [40] = "StructuralAluminiumBackground",
+                    [41] = "StructuralAluminiumBackground",
+                    [24] = "armour",
+                },
+            },
+            [37] = 
+            {
+                relativePos = 
+                {
+                    y = -750,
+                    x = 300,
+                },
+                linkedTo = 
+                {
+                    [35] = "StructuralAluminiumBackground",
+                    [36] = "StructuralAluminiumBackground",
+                    [93] = "StructuralAluminiumBackground",
+                    [24] = "StructuralAluminiumBackground",
+                    [90] = "StructuralAluminiumBackground",
+                    [87] = "StructuralAluminiumBackground",
+                    [41] = "StructuralAluminiumBackground",
+                    [38] = "StructuralAluminiumBackground",
+                },
+            },
+            [38] = 
+            {
+                relativePos = 
+                {
+                    y = -600,
+                    x = 400,
+                },
+                linkedTo = 
+                {
+                    [61] = "StructuralAluminiumBackground",
+                    [36] = "armour",
+                    [37] = "StructuralAluminiumBackground",
+                    [55] = "StructuralAluminiumBackground",
+                    [39] = "StructuralAluminiumBackground",
+                    [40] = "StructuralAluminiumBackground",
+                    [41] = "StructuralAluminiumBackground",
+                    [58] = "StructuralAluminiumBackground",
+                },
+            },
+            [39] = 
+            {
+                relativePos = 
+                {
+                    y = -450,
+                    x = 300,
+                },
+                linkedTo = 
+                {
+                    [42] = "armour",
+                    [36] = "armour",
+                    [38] = "StructuralAluminiumBackground",
+                    [40] = "StructuralAluminiumBackground",
+                    [43] = "StructuralAluminiumBackground",
+                },
+            },
+            [40] = 
+            {
+                relativePos = 
+                {
+                    y = -450,
+                    x = 400,
+                },
+                linkedTo = 
+                {
+                    [42] = "StructuralAluminiumBackground",
+                    [36] = "StructuralAluminiumBackground",
+                    [58] = "StructuralAluminiumBackground",
+                    [38] = "StructuralAluminiumBackground",
+                    [39] = "StructuralAluminiumBackground",
+                    [52] = "StructuralAluminiumBackground",
+                    [55] = "StructuralAluminiumBackground",
+                    [43] = "StructuralAluminiumBackground",
+                },
+            },
+            [41] = 
+            {
+                relativePos = 
+                {
+                    y = -750,
+                    x = 400,
+                },
+                linkedTo = 
+                {
+                    [90] = "StructuralAluminiumBackground",
+                    [36] = "StructuralAluminiumBackground",
+                    [37] = "StructuralAluminiumBackground",
+                    [38] = "StructuralAluminiumBackground",
+                    [87] = "StructuralAluminiumBackground",
+                    [61] = "StructuralAluminiumBackground",
+                    [82] = "StructuralAluminiumBackground",
+                    [58] = "StructuralAluminiumBackground",
+                },
+            },
+            [42] = 
+            {
+                relativePos = 
+                {
+                    y = -300,
+                    x = 300,
+                },
+                linkedTo = 
+                {
+                    [43] = "StructuralAluminiumBackground",
+                    [44] = "armour",
+                    [45] = "StructuralAluminiumBackground",
+                    [39] = "armour",
+                    [40] = "StructuralAluminiumBackground",
+                },
+            },
+            [43] = 
+            {
+                relativePos = 
+                {
+                    y = -300,
+                    x = 400,
+                },
+                linkedTo = 
+                {
+                    [42] = "StructuralAluminiumBackground",
+                    [55] = "StructuralAluminiumBackground",
+                    [44] = "StructuralAluminiumBackground",
+                    [45] = "StructuralAluminiumBackground",
+                    [39] = "StructuralAluminiumBackground",
+                    [40] = "StructuralAluminiumBackground",
+                    [48] = "StructuralAluminiumBackground",
+                    [52] = "StructuralAluminiumBackground",
+                },
+            },
+            [44] = 
+            {
+                relativePos = 
+                {
+                    y = -150,
+                    x = 300,
+                },
+                linkedTo = 
+                {
+                    [43] = "StructuralAluminiumBackground",
+                    [46] = "armour",
+                    [45] = "StructuralAluminiumBackground",
+                    [42] = "armour",
+                },
+            },
+            [45] = 
+            {
+                relativePos = 
+                {
+                    y = -150,
+                    x = 400,
+                },
+                linkedTo = 
+                {
+                    [42] = "StructuralAluminiumBackground",
+                    [43] = "StructuralAluminiumBackground",
+                    [44] = "StructuralAluminiumBackground",
+                    [52] = "StructuralAluminiumBackground",
+                    [46] = "StructuralAluminiumBackground",
+                    [47] = "StructuralAluminiumBackground",
+                    [48] = "StructuralAluminiumBackground",
+                },
+            },
+            [46] = 
+            {
+                relativePos = 
+                {
+                    y = 0,
+                    x = 400,
+                },
+                linkedTo = 
+                {
+                    [48] = "StructuralAluminiumBackground",
+                    [44] = "armour",
+                    [45] = "StructuralAluminiumBackground",
+                    [47] = "armour",
+                },
+            },
+            [47] = 
+            {
+                relativePos = 
+                {
+                    y = 0,
+                    x = 500,
+                },
+                linkedTo = 
+                {
+                    [49] = "StructuralAluminiumBackground",
+                    [50] = "armour",
+                    [45] = "StructuralAluminiumBackground",
+                    [46] = "armour",
+                    [48] = "StructuralAluminiumBackground",
+                },
+            },
+            [48] = 
+            {
+                relativePos = 
+                {
+                    y = -150,
+                    x = 500,
+                },
+                linkedTo = 
+                {
+                    [49] = "StructuralAluminiumBackground",
+                    [50] = "StructuralAluminiumBackground",
+                    [53] = "StructuralAluminiumBackground",
+                    [45] = "StructuralAluminiumBackground",
+                    [46] = "StructuralAluminiumBackground",
+                    [47] = "StructuralAluminiumBackground",
+                    [52] = "StructuralAluminiumBackground",
+                    [43] = "StructuralAluminiumBackground",
+                },
+            },
+            [49] = 
+            {
+                relativePos = 
+                {
+                    y = -150,
+                    x = 600,
+                },
+                linkedTo = 
+                {
+                    [50] = "StructuralAluminiumBackground",
+                    [51] = "StructuralAluminiumBackground",
+                    [52] = "StructuralAluminiumBackground",
+                    [53] = "StructuralAluminiumBackground",
+                    [47] = "StructuralAluminiumBackground",
+                    [48] = "StructuralAluminiumBackground",
+                    [54] = "StructuralAluminiumBackground",
+                },
+            },
+            [50] = 
+            {
+                relativePos = 
+                {
+                    y = 0,
+                    x = 600,
+                },
+                linkedTo = 
+                {
+                    [49] = "StructuralAluminiumBackground",
+                    [47] = "armour",
+                    [48] = "StructuralAluminiumBackground",
+                    [51] = "armour",
+                },
+            },
+            [51] = 
+            {
+                relativePos = 
+                {
+                    y = -150,
+                    x = 700,
+                },
+                linkedTo = 
+                {
+                    [49] = "StructuralAluminiumBackground",
+                    [50] = "armour",
+                    [54] = "armour",
+                    [53] = "StructuralAluminiumBackground",
+                },
+            },
+            [52] = 
+            {
+                relativePos = 
+                {
+                    y = -300,
+                    x = 500,
+                },
+                linkedTo = 
+                {
+                    [49] = "StructuralAluminiumBackground",
+                    [43] = "StructuralAluminiumBackground",
+                    [56] = "StructuralAluminiumBackground",
+                    [45] = "StructuralAluminiumBackground",
+                    [53] = "StructuralAluminiumBackground",
+                    [40] = "StructuralAluminiumBackground",
+                    [48] = "StructuralAluminiumBackground",
+                    [55] = "StructuralAluminiumBackground",
+                },
+            },
+            [53] = 
+            {
+                relativePos = 
+                {
+                    y = -300,
+                    x = 600,
+                },
+                linkedTo = 
+                {
+                    [49] = "StructuralAluminiumBackground",
+                    [57] = "StructuralAluminiumBackground",
+                    [51] = "StructuralAluminiumBackground",
+                    [52] = "StructuralAluminiumBackground",
+                    [55] = "StructuralAluminiumBackground",
+                    [54] = "StructuralAluminiumBackground",
+                    [48] = "StructuralAluminiumBackground",
+                    [56] = "StructuralAluminiumBackground",
+                },
+            },
+            [54] = 
+            {
+                relativePos = 
+                {
+                    y = -300,
+                    x = 700,
+                },
+                linkedTo = 
+                {
+                    [49] = "StructuralAluminiumBackground",
+                    [57] = "armour",
+                    [51] = "armour",
+                    [53] = "StructuralAluminiumBackground",
+                    [56] = "StructuralAluminiumBackground",
+                },
+            },
+            [55] = 
+            {
+                relativePos = 
+                {
+                    y = -450,
+                    x = 500,
+                },
+                linkedTo = 
+                {
+                    [56] = "StructuralAluminiumBackground",
+                    [43] = "StructuralAluminiumBackground",
+                    [58] = "StructuralAluminiumBackground",
+                    [52] = "StructuralAluminiumBackground",
+                    [53] = "StructuralAluminiumBackground",
+                    [40] = "StructuralAluminiumBackground",
+                    [59] = "StructuralAluminiumBackground",
+                    [38] = "StructuralAluminiumBackground",
+                },
+            },
+            [56] = 
+            {
+                relativePos = 
+                {
+                    y = -450,
+                    x = 600,
+                },
+                linkedTo = 
+                {
+                    [60] = "StructuralAluminiumBackground",
+                    [57] = "StructuralAluminiumBackground",
+                    [58] = "StructuralAluminiumBackground",
+                    [52] = "StructuralAluminiumBackground",
+                    [53] = "StructuralAluminiumBackground",
+                    [54] = "StructuralAluminiumBackground",
+                    [55] = "StructuralAluminiumBackground",
+                    [59] = "StructuralAluminiumBackground",
+                },
+            },
+            [57] = 
+            {
+                relativePos = 
+                {
+                    y = -450,
+                    x = 700,
+                },
+                linkedTo = 
+                {
+                    [56] = "StructuralAluminiumBackground",
+                    [59] = "StructuralAluminiumBackground",
+                    [53] = "StructuralAluminiumBackground",
+                    [54] = "armour",
+                    [60] = "armour",
+                },
+            },
+            [58] = 
+            {
+                relativePos = 
+                {
+                    y = -600,
+                    x = 500,
+                },
+                linkedTo = 
+                {
+                    [56] = "StructuralAluminiumBackground",
+                    [62] = "StructuralAluminiumBackground",
+                    [41] = "StructuralAluminiumBackground",
+                    [59] = "StructuralAluminiumBackground",
+                    [61] = "StructuralAluminiumBackground",
+                    [40] = "StructuralAluminiumBackground",
+                    [55] = "StructuralAluminiumBackground",
+                    [38] = "StructuralAluminiumBackground",
+                },
+            },
+            [59] = 
+            {
+                relativePos = 
+                {
+                    y = -600,
+                    x = 600,
+                },
+                linkedTo = 
+                {
+                    [56] = "StructuralAluminiumBackground",
+                    [57] = "StructuralAluminiumBackground",
+                    [58] = "StructuralAluminiumBackground",
+                    [63] = "StructuralAluminiumBackground",
+                    [60] = "StructuralAluminiumBackground",
+                    [61] = "StructuralAluminiumBackground",
+                    [55] = "StructuralAluminiumBackground",
+                    [62] = "StructuralAluminiumBackground",
+                },
+            },
+            [60] = 
+            {
+                relativePos = 
+                {
+                    y = -600,
+                    x = 700,
+                },
+                linkedTo = 
+                {
+                    [56] = "StructuralAluminiumBackground",
+                    [57] = "armour",
+                    [59] = "StructuralAluminiumBackground",
+                    [62] = "StructuralAluminiumBackground",
+                    [63] = "armour",
+                },
+            },
+            [61] = 
+            {
+                relativePos = 
+                {
+                    y = -750,
+                    x = 500,
+                },
+                linkedTo = 
+                {
+                    [59] = "StructuralAluminiumBackground",
+                    [81] = "StructuralAluminiumBackground",
+                    [58] = "StructuralAluminiumBackground",
+                    [38] = "StructuralAluminiumBackground",
+                    [82] = "StructuralAluminiumBackground",
+                    [87] = "StructuralAluminiumBackground",
+                    [41] = "StructuralAluminiumBackground",
+                    [62] = "StructuralAluminiumBackground",
+                },
+            },
+            [62] = 
+            {
+                relativePos = 
+                {
+                    y = -750,
+                    x = 600,
+                },
+                linkedTo = 
+                {
+                    [63] = "StructuralAluminiumBackground",
+                    [106] = "StructuralAluminiumBackground",
+                    [58] = "StructuralAluminiumBackground",
+                    [59] = "StructuralAluminiumBackground",
+                    [60] = "StructuralAluminiumBackground",
+                    [61] = "StructuralAluminiumBackground",
+                    [82] = "StructuralAluminiumBackground",
+                    [81] = "StructuralAluminiumBackground",
+                },
+            },
+            [63] = 
+            {
+                relativePos = 
+                {
+                    y = -750,
+                    x = 700,
+                },
+                linkedTo = 
+                {
+                    [81] = "StructuralAluminiumBackground",
+                    [59] = "StructuralAluminiumBackground",
+                    [60] = "armour",
+                    [62] = "StructuralAluminiumBackground",
+                    [106] = "armour",
+                },
+            },
+            [64] = 
+            {
+                relativePos = 
+                {
+                    y = -900,
+                    x = -500,
+                },
+                linkedTo = 
+                {
+                    [65] = "StructuralAluminiumBackground",
+                    [67] = "armour",
+                    [31] = "StructuralAluminiumBackground",
+                    [32] = "armour",
+                    [33] = "StructuralAluminiumBackground",
+                },
+            },
+            [65] = 
+            {
+                relativePos = 
+                {
+                    y = -1050,
+                    x = -400,
+                },
+                linkedTo = 
+                {
+                    [70] = "StructuralAluminiumBackground",
+                    [68] = "StructuralAluminiumBackground",
+                    [67] = "StructuralAluminiumBackground",
+                    [69] = "StructuralAluminiumBackground",
+                    [64] = "StructuralAluminiumBackground",
+                    [33] = "StructuralAluminiumBackground",
+                    [34] = "StructuralAluminiumBackground",
+                    [66] = "StructuralAluminiumBackground",
+                },
+            },
+            [66] = 
+            {
+                relativePos = 
+                {
+                    y = -1050,
+                    x = -300,
+                },
+                linkedTo = 
+                {
+                    [77] = "StructuralAluminiumBackground",
+                    [65] = "StructuralAluminiumBackground",
+                    [76] = "StructuralAluminiumBackground",
+                    [69] = "armour",
+                    [78] = "StructuralAluminiumBackground",
+                    [33] = "StructuralAluminiumBackground",
+                    [34] = "armour",
+                    [68] = "StructuralAluminiumBackground",
+                },
+            },
+            [67] = 
+            {
+                relativePos = 
+                {
+                    y = -1050,
+                    x = -500,
+                },
+                linkedTo = 
+                {
+                    [70] = "armour",
+                    [65] = "StructuralAluminiumBackground",
+                    [64] = "armour",
+                    [33] = "StructuralAluminiumBackground",
+                    [68] = "StructuralAluminiumBackground",
+                },
+            },
+            [68] = 
+            {
+                relativePos = 
+                {
+                    y = -1200,
+                    x = -400,
+                },
+                linkedTo = 
+                {
+                    [70] = "StructuralAluminiumBackground",
+                    [65] = "StructuralAluminiumBackground",
+                    [67] = "StructuralAluminiumBackground",
+                    [69] = "StructuralAluminiumBackground",
+                    [71] = "StructuralAluminiumBackground",
+                    [66] = "StructuralAluminiumBackground",
+                    [73] = "StructuralAluminiumBackground",
+                    [72] = "StructuralAluminiumBackground",
+                },
+            },
+            [69] = 
+            {
+                relativePos = 
+                {
+                    y = -1200,
+                    x = -300,
+                },
+                linkedTo = 
+                {
+                    [77] = "StructuralAluminiumBackground",
+                    [72] = "armour",
+                    [79] = "StructuralAluminiumBackground",
+                    [78] = "StructuralAluminiumBackground",
+                    [71] = "StructuralAluminiumBackground",
+                    [66] = "armour",
+                    [68] = "StructuralAluminiumBackground",
+                    [65] = "StructuralAluminiumBackground",
+                },
+            },
+            [70] = 
+            {
+                relativePos = 
+                {
+                    y = -1200,
+                    x = -500,
+                },
+                linkedTo = 
+                {
+                    [65] = "StructuralAluminiumBackground",
+                    [67] = "armour",
+                    [71] = "StructuralAluminiumBackground",
+                    [73] = "armour",
+                    [68] = "StructuralAluminiumBackground",
+                },
+            },
+            [71] = 
+            {
+                relativePos = 
+                {
+                    y = -1350,
+                    x = -400,
+                },
+                linkedTo = 
+                {
+                    [70] = "StructuralAluminiumBackground",
+                    [72] = "StructuralAluminiumBackground",
+                    [74] = "StructuralAluminiumBackground",
+                    [69] = "StructuralAluminiumBackground",
+                    [73] = "StructuralAluminiumBackground",
+                    [68] = "StructuralAluminiumBackground",
+                    [75] = "StructuralAluminiumBackground",
+                },
+            },
+            [72] = 
+            {
+                relativePos = 
+                {
+                    y = -1350,
+                    x = -300,
+                },
+                linkedTo = 
+                {
+                    [78] = "StructuralAluminiumBackground",
+                    [79] = "StructuralAluminiumBackground",
+                    [74] = "StructuralAluminiumBackground",
+                    [69] = "armour",
+                    [71] = "StructuralAluminiumBackground",
+                    [80] = "StructuralAluminiumBackground",
+                    [75] = "armour",
+                    [68] = "StructuralAluminiumBackground",
+                },
+            },
+            [73] = 
+            {
+                relativePos = 
+                {
+                    y = -1350,
+                    x = -500,
+                },
+                linkedTo = 
+                {
+                    [68] = "StructuralAluminiumBackground",
+                    [70] = "armour",
+                    [74] = "armour",
+                    [71] = "StructuralAluminiumBackground",
+                },
+            },
+            [74] = 
+            {
+                relativePos = 
+                {
+                    y = -1500,
+                    x = -400,
+                },
+                linkedTo = 
+                {
+                    [71] = "StructuralAluminiumBackground",
+                    [73] = "armour",
+                    [75] = "armour",
+                    [72] = "StructuralAluminiumBackground",
+                },
+            },
+            [75] = 
+            {
+                relativePos = 
+                {
+                    y = -1500,
+                    x = -300,
+                },
+                linkedTo = 
+                {
+                    [72] = "armour",
+                    [74] = "armour",
+                    [114] = "StructuralAluminiumBackground",
+                    [71] = "StructuralAluminiumBackground",
+                    [80] = "StructuralAluminiumBackground",
+                    [115] = "armour",
+                    [79] = "StructuralAluminiumBackground",
+                },
+            },
+            [76] = 
+            {
+                relativePos = 
+                {
+                    y = -900,
+                    x = -200,
+                },
+                linkedTo = 
+                {
+                    [77] = "StructuralAluminiumBackground",
+                    [103] = "StructuralAluminiumBackground",
+                    [27] = "StructuralAluminiumBackground",
+                    [104] = "StructuralAluminiumBackground",
+                    [28] = "StructuralAluminiumBackground",
+                    [66] = "StructuralAluminiumBackground",
+                    [29] = "StructuralAluminiumBackground",
+                    [34] = "StructuralAluminiumBackground",
+                },
+            },
+            [77] = 
+            {
+                relativePos = 
+                {
+                    y = -1050,
+                    x = -200,
+                },
+                linkedTo = 
+                {
+                    [105] = "StructuralAluminiumBackground",
+                    [103] = "StructuralAluminiumBackground",
+                    [104] = "StructuralAluminiumBackground",
+                    [76] = "StructuralAluminiumBackground",
+                    [78] = "StructuralAluminiumBackground",
+                    [66] = "StructuralAluminiumBackground",
+                    [34] = "StructuralAluminiumBackground",
+                    [69] = "StructuralAluminiumBackground",
+                },
+            },
+            [78] = 
+            {
+                relativePos = 
+                {
+                    y = -1200,
+                    x = -200,
+                },
+                linkedTo = 
+                {
+                    [77] = "StructuralAluminiumBackground",
+                    [79] = "StructuralAluminiumBackground",
+                    [109] = "StructuralAluminiumBackground",
+                    [69] = "StructuralAluminiumBackground",
+                    [104] = "StructuralAluminiumBackground",
+                    [66] = "StructuralAluminiumBackground",
+                    [105] = "StructuralAluminiumBackground",
+                    [72] = "StructuralAluminiumBackground",
+                },
+            },
+            [79] = 
+            {
+                relativePos = 
+                {
+                    y = -1350,
+                    x = -200,
+                },
+                linkedTo = 
+                {
+                    [105] = "StructuralAluminiumBackground",
+                    [72] = "StructuralAluminiumBackground",
+                    [109] = "StructuralAluminiumBackground",
+                    [69] = "StructuralAluminiumBackground",
+                    [78] = "StructuralAluminiumBackground",
+                    [80] = "StructuralAluminiumBackground",
+                    [75] = "StructuralAluminiumBackground",
+                    [110] = "StructuralAluminiumBackground",
+                },
+            },
+            [80] = 
+            {
+                relativePos = 
+                {
+                    y = -1500,
+                    x = -200,
+                },
+                linkedTo = 
+                {
+                    [110] = "StructuralAluminiumBackground",
+                    [72] = "StructuralAluminiumBackground",
+                    [109] = "StructuralAluminiumBackground",
+                    [114] = "StructuralAluminiumBackground",
+                    [113] = "StructuralAluminiumBackground",
+                    [115] = "StructuralAluminiumBackground",
+                    [75] = "StructuralAluminiumBackground",
+                    [79] = "StructuralAluminiumBackground",
+                },
+            },
+            [81] = 
+            {
+                relativePos = 
+                {
+                    y = -900,
+                    x = 600,
+                },
+                linkedTo = 
+                {
+                    [84] = "StructuralAluminiumBackground",
+                    [107] = "StructuralAluminiumBackground",
+                    [63] = "StructuralAluminiumBackground",
+                    [83] = "StructuralAluminiumBackground",
+                    [106] = "StructuralAluminiumBackground",
+                    [61] = "StructuralAluminiumBackground",
+                    [82] = "StructuralAluminiumBackground",
+                    [62] = "StructuralAluminiumBackground",
+                },
+            },
+            [82] = 
+            {
+                relativePos = 
+                {
+                    y = -900,
+                    x = 500,
+                },
+                linkedTo = 
+                {
+                    [84] = "StructuralAluminiumBackground",
+                    [88] = "StructuralAluminiumBackground",
+                    [81] = "StructuralAluminiumBackground",
+                    [83] = "StructuralAluminiumBackground",
+                    [87] = "StructuralAluminiumBackground",
+                    [61] = "StructuralAluminiumBackground",
+                    [62] = "StructuralAluminiumBackground",
+                    [41] = "StructuralAluminiumBackground",
+                },
+            },
+            [83] = 
+            {
+                relativePos = 
+                {
+                    y = -1050,
+                    x = 600,
+                },
+                linkedTo = 
+                {
+                    [84] = "StructuralAluminiumBackground",
+                    [86] = "StructuralAluminiumBackground",
+                    [81] = "StructuralAluminiumBackground",
+                    [106] = "StructuralAluminiumBackground",
+                    [85] = "StructuralAluminiumBackground",
+                    [108] = "StructuralAluminiumBackground",
+                    [82] = "StructuralAluminiumBackground",
+                    [107] = "StructuralAluminiumBackground",
+                },
+            },
+            [84] = 
+            {
+                relativePos = 
+                {
+                    y = -1050,
+                    x = 500,
+                },
+                linkedTo = 
+                {
+                    [89] = "StructuralAluminiumBackground",
+                    [86] = "StructuralAluminiumBackground",
+                    [81] = "StructuralAluminiumBackground",
+                    [83] = "StructuralAluminiumBackground",
+                    [85] = "StructuralAluminiumBackground",
+                    [87] = "StructuralAluminiumBackground",
+                    [82] = "StructuralAluminiumBackground",
+                    [88] = "StructuralAluminiumBackground",
+                },
+            },
+            [85] = 
+            {
+                relativePos = 
+                {
+                    y = -1200,
+                    x = 600,
+                },
+                linkedTo = 
+                {
+                    [84] = "StructuralAluminiumBackground",
+                    [86] = "armour",
+                    [123] = "backbracing",
+                    [83] = "StructuralAluminiumBackground",
+                    [122] = "backbracing",
+                    [108] = "armour",
+                    [124] = "backbracing",
+                    [107] = "StructuralAluminiumBackground",
+                },
+            },
+            [86] = 
+            {
+                relativePos = 
+                {
+                    y = -1200,
+                    x = 500,
+                },
+                linkedTo = 
+                {
+                    [124] = "backbracing",
+                    [88] = "StructuralAluminiumBackground",
+                    [89] = "armour",
+                    [83] = "StructuralAluminiumBackground",
+                    [121] = "backbracing",
+                    [84] = "StructuralAluminiumBackground",
+                    [122] = "backbracing",
+                    [85] = "armour",
+                    [123] = "backbracing",
+                },
+            },
+            [87] = 
+            {
+                relativePos = 
+                {
+                    y = -900,
+                    x = 400,
+                },
+                linkedTo = 
+                {
+                    [84] = "StructuralAluminiumBackground",
+                    [91] = "StructuralAluminiumBackground",
+                    [88] = "StructuralAluminiumBackground",
+                    [90] = "StructuralAluminiumBackground",
+                    [37] = "StructuralAluminiumBackground",
+                    [61] = "StructuralAluminiumBackground",
+                    [41] = "StructuralAluminiumBackground",
+                    [82] = "StructuralAluminiumBackground",
+                },
+            },
+            [88] = 
+            {
+                relativePos = 
+                {
+                    y = -1050,
+                    x = 400,
+                },
+                linkedTo = 
+                {
+                    [84] = "StructuralAluminiumBackground",
+                    [86] = "StructuralAluminiumBackground",
+                    [91] = "StructuralAluminiumBackground",
+                    [90] = "StructuralAluminiumBackground",
+                    [92] = "StructuralAluminiumBackground",
+                    [87] = "StructuralAluminiumBackground",
+                    [82] = "StructuralAluminiumBackground",
+                    [89] = "StructuralAluminiumBackground",
+                },
+            },
+            [89] = 
+            {
+                relativePos = 
+                {
+                    y = -1200,
+                    x = 400,
+                },
+                linkedTo = 
+                {
+                    [84] = "StructuralAluminiumBackground",
+                    [86] = "armour",
+                    [88] = "StructuralAluminiumBackground",
+                    [120] = "backbracing",
+                    [92] = "armour",
+                    [122] = "backbracing",
+                    [121] = "backbracing",
+                    [91] = "StructuralAluminiumBackground",
+                },
+            },
+            [90] = 
+            {
+                relativePos = 
+                {
+                    y = -900,
+                    x = 300,
+                },
+                linkedTo = 
+                {
+                    [37] = "StructuralAluminiumBackground",
+                    [41] = "StructuralAluminiumBackground",
+                    [87] = "StructuralAluminiumBackground",
+                    [88] = "StructuralAluminiumBackground",
+                    [35] = "StructuralAluminiumBackground",
+                    [24] = "StructuralAluminiumBackground",
+                    [94] = "StructuralAluminiumBackground",
+                    [93] = "StructuralAluminiumBackground",
+                    [91] = "StructuralAluminiumBackground",
+                },
+            },
+            [91] = 
+            {
+                relativePos = 
+                {
+                    y = -1050,
+                    x = 300,
+                },
+                linkedTo = 
+                {
+                    [95] = "StructuralAluminiumBackground",
+                    [93] = "StructuralAluminiumBackground",
+                    [88] = "StructuralAluminiumBackground",
+                    [90] = "StructuralAluminiumBackground",
+                    [92] = "StructuralAluminiumBackground",
+                    [87] = "StructuralAluminiumBackground",
+                    [89] = "StructuralAluminiumBackground",
+                    [94] = "StructuralAluminiumBackground",
+                },
+            },
+            [92] = 
+            {
+                relativePos = 
+                {
+                    y = -1200,
+                    x = 300,
+                },
+                linkedTo = 
+                {
+                    [91] = "StructuralAluminiumBackground",
+                    [121] = "backbracing",
+                    [95] = "armour",
+                    [119] = "backbracing",
+                    [120] = "backbracing",
+                    [94] = "StructuralAluminiumBackground",
+                    [89] = "armour",
+                    [88] = "StructuralAluminiumBackground",
+                },
+            },
+            [93] = 
+            {
+                relativePos = 
+                {
+                    y = -900,
+                    x = 200,
+                },
+                linkedTo = 
+                {
+                    [35] = "StructuralAluminiumBackground",
+                    [97] = "StructuralAluminiumBackground",
+                    [37] = "StructuralAluminiumBackground",
+                    [90] = "StructuralAluminiumBackground",
+                    [26] = "StructuralAluminiumBackground",
+                    [94] = "StructuralAluminiumBackground",
+                    [96] = "StructuralAluminiumBackground",
+                    [91] = "StructuralAluminiumBackground",
+                },
+            },
+            [94] = 
+            {
+                relativePos = 
+                {
+                    y = -1050,
+                    x = 200,
+                },
+                linkedTo = 
+                {
+                    [91] = "StructuralAluminiumBackground",
+                    [93] = "StructuralAluminiumBackground",
+                    [95] = "StructuralAluminiumBackground",
+                    [90] = "StructuralAluminiumBackground",
+                    [92] = "StructuralAluminiumBackground",
+                    [98] = "StructuralAluminiumBackground",
+                    [96] = "StructuralAluminiumBackground",
+                    [97] = "StructuralAluminiumBackground",
+                },
+            },
+            [95] = 
+            {
+                relativePos = 
+                {
+                    y = -1200,
+                    x = 200,
+                },
+                linkedTo = 
+                {
+                    [94] = "StructuralAluminiumBackground",
+                    [118] = "backbracing",
+                    [96] = "StructuralAluminiumBackground",
+                    [119] = "backbracing",
+                    [97] = "StructuralAluminiumBackground",
+                    [120] = "backbracing",
+                    [98] = "armour",
+                    [91] = "StructuralAluminiumBackground",
+                    [92] = "armour",
+                },
+            },
+            [96] = 
+            {
+                relativePos = 
+                {
+                    y = -900,
+                    x = 100,
+                },
+                linkedTo = 
+                {
+                    [101] = "StructuralAluminiumBackground",
+                    [94] = "StructuralAluminiumBackground",
+                    [25] = "StructuralAluminiumBackground",
+                    [35] = "StructuralAluminiumBackground",
+                    [26] = "StructuralAluminiumBackground",
+                    [95] = "StructuralAluminiumBackground",
+                    [100] = "StructuralAluminiumBackground",
+                    [93] = "StructuralAluminiumBackground",
+                    [97] = "StructuralAluminiumBackground",
+                },
+            },
+            [97] = 
+            {
+                relativePos = 
+                {
+                    y = -1050,
+                    x = 100,
+                },
+                linkedTo = 
+                {
+                    [98] = "StructuralAluminiumBackground",
+                    [93] = "StructuralAluminiumBackground",
+                    [95] = "StructuralAluminiumBackground",
+                    [102] = "StructuralAluminiumBackground",
+                    [100] = "StructuralAluminiumBackground",
+                    [94] = "StructuralAluminiumBackground",
+                    [96] = "StructuralAluminiumBackground",
+                    [101] = "StructuralAluminiumBackground",
+                },
+            },
+            [98] = 
+            {
+                relativePos = 
+                {
+                    y = -1200,
+                    x = 100,
+                },
+                linkedTo = 
+                {
+                    [119] = "backbracing",
+                    [118] = "backbracing",
+                    [95] = "armour",
+                    [97] = "StructuralAluminiumBackground",
+                    [99] = "armour",
+                    [94] = "StructuralAluminiumBackground",
+                    [101] = "StructuralAluminiumBackground",
+                    [102] = "StructuralAluminiumBackground",
+                },
+            },
+            [99] = 
+            {
+                relativePos = 
+                {
+                    y = -1350,
+                    x = 0,
+                },
+                linkedTo = 
+                {
+                    [105] = "StructuralAluminiumBackground",
+                    [125] = "backbracing",
+                    [102] = "StructuralAluminiumBackground",
+                    [111] = "armour",
+                    [118] = "backbracing",
+                    [98] = "armour",
+                    [110] = "StructuralAluminiumBackground",
+                    [109] = "StructuralAluminiumBackground",
+                },
+            },
+            [100] = 
+            {
+                relativePos = 
+                {
+                    y = -900,
+                    x = 0,
+                },
+                linkedTo = 
+                {
+                    [26] = "StructuralAluminiumBackground",
+                    [104] = "StructuralAluminiumBackground",
+                    [27] = "StructuralAluminiumBackground",
+                    [97] = "StructuralAluminiumBackground",
+                    [103] = "StructuralAluminiumBackground",
+                    [101] = "StructuralAluminiumBackground",
+                    [96] = "StructuralAluminiumBackground",
+                    [25] = "StructuralAluminiumBackground",
+                },
+            },
+            [101] = 
+            {
+                relativePos = 
+                {
+                    y = -1050,
+                    x = 0,
+                },
+                linkedTo = 
+                {
+                    [98] = "StructuralAluminiumBackground",
+                    [100] = "StructuralAluminiumBackground",
+                    [102] = "StructuralAluminiumBackground",
+                    [97] = "StructuralAluminiumBackground",
+                    [105] = "StructuralAluminiumBackground",
+                    [103] = "StructuralAluminiumBackground",
+                    [96] = "StructuralAluminiumBackground",
+                    [104] = "StructuralAluminiumBackground",
+                },
+            },
+            [102] = 
+            {
+                relativePos = 
+                {
+                    y = -1200,
+                    x = 0,
+                },
+                linkedTo = 
+                {
+                    [98] = "StructuralAluminiumBackground",
+                    [109] = "StructuralAluminiumBackground",
+                    [97] = "StructuralAluminiumBackground",
+                    [99] = "StructuralAluminiumBackground",
+                    [101] = "StructuralAluminiumBackground",
+                    [105] = "StructuralAluminiumBackground",
+                    [104] = "StructuralAluminiumBackground",
+                },
+            },
+            [103] = 
+            {
+                relativePos = 
+                {
+                    y = -900,
+                    x = -100,
+                },
+                linkedTo = 
+                {
+                    [77] = "StructuralAluminiumBackground",
+                    [100] = "StructuralAluminiumBackground",
+                    [27] = "StructuralAluminiumBackground",
+                    [76] = "StructuralAluminiumBackground",
+                    [28] = "StructuralAluminiumBackground",
+                    [25] = "StructuralAluminiumBackground",
+                    [101] = "StructuralAluminiumBackground",
+                    [104] = "StructuralAluminiumBackground",
+                },
+            },
+            [104] = 
+            {
+                relativePos = 
+                {
+                    y = -1050,
+                    x = -100,
+                },
+                linkedTo = 
+                {
+                    [77] = "StructuralAluminiumBackground",
+                    [100] = "StructuralAluminiumBackground",
+                    [102] = "StructuralAluminiumBackground",
+                    [76] = "StructuralAluminiumBackground",
+                    [78] = "StructuralAluminiumBackground",
+                    [101] = "StructuralAluminiumBackground",
+                    [103] = "StructuralAluminiumBackground",
+                    [105] = "StructuralAluminiumBackground",
+                },
+            },
+            [105] = 
+            {
+                relativePos = 
+                {
+                    y = -1200,
+                    x = -100,
+                },
+                linkedTo = 
+                {
+                    [77] = "StructuralAluminiumBackground",
+                    [79] = "StructuralAluminiumBackground",
+                    [102] = "StructuralAluminiumBackground",
+                    [104] = "StructuralAluminiumBackground",
+                    [78] = "StructuralAluminiumBackground",
+                    [101] = "StructuralAluminiumBackground",
+                    [99] = "StructuralAluminiumBackground",
+                    [109] = "StructuralAluminiumBackground",
+                },
+            },
+            [106] = 
+            {
+                relativePos = 
+                {
+                    y = -900,
+                    x = 700,
+                },
+                linkedTo = 
+                {
+                    [63] = "armour",
+                    [107] = "armour",
+                    [81] = "StructuralAluminiumBackground",
+                    [83] = "StructuralAluminiumBackground",
+                    [62] = "StructuralAluminiumBackground",
+                },
+            },
+            [107] = 
+            {
+                relativePos = 
+                {
+                    y = -1050,
+                    x = 700,
+                },
+                linkedTo = 
+                {
+                    [81] = "StructuralAluminiumBackground",
+                    [83] = "StructuralAluminiumBackground",
+                    [106] = "armour",
+                    [108] = "armour",
+                    [85] = "StructuralAluminiumBackground",
+                },
+            },
+            [108] = 
+            {
+                relativePos = 
+                {
+                    y = -1200,
+                    x = 700,
+                },
+                linkedTo = 
+                {
+                    [107] = "armour",
+                    [123] = "backbracing",
+                    [83] = "StructuralAluminiumBackground",
+                    [85] = "armour",
+                    [117] = "armour",
+                    [124] = "backbracing",
+                },
+            },
+            [109] = 
+            {
+                relativePos = 
+                {
+                    y = -1350,
+                    x = -100,
+                },
+                linkedTo = 
+                {
+                    [105] = "StructuralAluminiumBackground",
+                    [79] = "StructuralAluminiumBackground",
+                    [102] = "StructuralAluminiumBackground",
+                    [111] = "StructuralAluminiumBackground",
+                    [99] = "StructuralAluminiumBackground",
+                    [80] = "StructuralAluminiumBackground",
+                    [110] = "StructuralAluminiumBackground",
+                    [78] = "StructuralAluminiumBackground",
+                },
+            },
+            [110] = 
+            {
+                relativePos = 
+                {
+                    y = -1500,
+                    x = -100,
+                },
+                linkedTo = 
+                {
+                    [112] = "StructuralAluminiumBackground",
+                    [79] = "StructuralAluminiumBackground",
+                    [109] = "StructuralAluminiumBackground",
+                    [111] = "StructuralAluminiumBackground",
+                    [99] = "StructuralAluminiumBackground",
+                    [80] = "StructuralAluminiumBackground",
+                    [114] = "StructuralAluminiumBackground",
+                    [113] = "StructuralAluminiumBackground",
+                },
+            },
+            [111] = 
+            {
+                relativePos = 
+                {
+                    y = -1500,
+                    x = 0,
+                },
+                linkedTo = 
+                {
+                    [112] = "StructuralAluminiumBackground",
+                    [118] = "backbracing",
+                    [109] = "StructuralAluminiumBackground",
+                    [125] = "backbracing",
+                    [99] = "armour",
+                    [116] = "armour",
+                    [110] = "StructuralAluminiumBackground",
+                    [113] = "StructuralAluminiumBackground",
+                },
+            },
+            [112] = 
+            {
+                relativePos = 
+                {
+                    y = -1650,
+                    x = 0,
+                },
+                linkedTo = 
+                {
+                    [142] = "StructuralAluminiumBackground",
+                    [116] = "StructuralAluminiumBackground",
+                    [111] = "StructuralAluminiumBackground",
+                    [113] = "StructuralAluminiumBackground",
+                    [140] = "StructuralAluminiumBackground",
+                    [110] = "StructuralAluminiumBackground",
+                    [141] = "StructuralAluminiumBackground",
+                },
+            },
+            [113] = 
+            {
+                relativePos = 
+                {
+                    y = -1650,
+                    x = -100,
+                },
+                linkedTo = 
+                {
+                    [112] = "StructuralAluminiumBackground",
+                    [114] = "StructuralAluminiumBackground",
+                    [140] = "StructuralAluminiumBackground",
+                    [111] = "StructuralAluminiumBackground",
+                    [141] = "StructuralAluminiumBackground",
+                    [80] = "StructuralAluminiumBackground",
+                    [110] = "StructuralAluminiumBackground",
+                    [139] = "StructuralAluminiumBackground",
+                },
+            },
+            [114] = 
+            {
+                relativePos = 
+                {
+                    y = -1650,
+                    x = -200,
+                },
+                linkedTo = 
+                {
+                    [139] = "StructuralAluminiumBackground",
+                    [140] = "StructuralAluminiumBackground",
+                    [110] = "StructuralAluminiumBackground",
+                    [113] = "StructuralAluminiumBackground",
+                    [80] = "StructuralAluminiumBackground",
+                    [75] = "StructuralAluminiumBackground",
+                    [115] = "StructuralAluminiumBackground",
+                },
+            },
+            [115] = 
+            {
+                relativePos = 
+                {
+                    y = -1650,
+                    x = -300,
+                },
+                linkedTo = 
+                {
+                    [80] = "StructuralAluminiumBackground",
+                    [139] = "armour",
+                    [114] = "StructuralAluminiumBackground",
+                    [75] = "armour",
+                },
+            },
+            [116] = 
+            {
+                relativePos = 
+                {
+                    y = -1650,
+                    x = 100,
+                },
+                linkedTo = 
+                {
+                    [112] = "StructuralAluminiumBackground",
+                    [143] = "StructuralAluminiumBackground",
+                    [133] = "armour",
+                    [111] = "armour",
+                    [141] = "StructuralAluminiumBackground",
+                    [126] = "backbracing",
+                    [142] = "StructuralAluminiumBackground",
+                    [125] = "backbracing",
+                },
+            },
+            [117] = 
+            {
+                relativePos = 
+                {
+                    y = -1350,
+                    x = 800,
+                },
+                linkedTo = 
+                {
+                    [132] = "armour",
+                    [124] = "backbracing",
+                    [108] = "armour",
+                    [131] = "backbracing",
+                },
+            },
+            [118] = 
+            {
+                relativePos = 
+                {
+                    y = -1350,
+                    x = 100,
+                },
+                linkedTo = 
+                {
+                    [119] = "backbracing",
+                    [95] = "backbracing",
+                    [125] = "backbracing",
+                    [99] = "backbracing",
+                    [126] = "backbracing",
+                    [111] = "backbracing",
+                    [98] = "backbracing",
+                },
+            },
+            [119] = 
+            {
+                relativePos = 
+                {
+                    y = -1350,
+                    x = 200,
+                },
+                linkedTo = 
+                {
+                    [98] = "backbracing",
+                    [127] = "backbracing",
+                    [95] = "backbracing",
+                    [118] = "backbracing",
+                    [120] = "backbracing",
+                    [125] = "backbracing",
+                    [126] = "backbracing",
+                    [92] = "backbracing",
+                },
+            },
+            [120] = 
+            {
+                relativePos = 
+                {
+                    y = -1350,
+                    x = 300,
+                },
+                linkedTo = 
+                {
+                    [119] = "backbracing",
+                    [121] = "backbracing",
+                    [95] = "backbracing",
+                    [128] = "backbracing",
+                    [92] = "backbracing",
+                    [126] = "backbracing",
+                    [89] = "backbracing",
+                    [127] = "backbracing",
+                },
+            },
+            [121] = 
+            {
+                relativePos = 
+                {
+                    y = -1350,
+                    x = 400,
+                },
+                linkedTo = 
+                {
+                    [129] = "backbracing",
+                    [86] = "backbracing",
+                    [127] = "backbracing",
+                    [128] = "backbracing",
+                    [120] = "backbracing",
+                    [122] = "backbracing",
+                    [89] = "backbracing",
+                    [92] = "backbracing",
+                },
+            },
+            [122] = 
+            {
+                relativePos = 
+                {
+                    y = -1350,
+                    x = 500,
+                },
+                linkedTo = 
+                {
+                    [128] = "backbracing",
+                    [86] = "backbracing",
+                    [123] = "backbracing",
+                    [130] = "backbracing",
+                    [85] = "backbracing",
+                    [129] = "backbracing",
+                    [89] = "backbracing",
+                    [121] = "backbracing",
+                },
+            },
+            [123] = 
+            {
+                relativePos = 
+                {
+                    y = -1350,
+                    x = 600,
+                },
+                linkedTo = 
+                {
+                    [131] = "backbracing",
+                    [86] = "backbracing",
+                    [129] = "backbracing",
+                    [130] = "backbracing",
+                    [85] = "backbracing",
+                    [122] = "backbracing",
+                    [124] = "backbracing",
+                    [108] = "backbracing",
+                },
+            },
+            [124] = 
+            {
+                relativePos = 
+                {
+                    y = -1350,
+                    x = 700,
+                },
+                linkedTo = 
+                {
+                    [132] = "backbracing",
+                    [86] = "backbracing",
+                    [123] = "backbracing",
+                    [130] = "backbracing",
+                    [85] = "backbracing",
+                    [108] = "backbracing",
+                    [117] = "backbracing",
+                    [131] = "backbracing",
+                },
+            },
+            [125] = 
+            {
+                relativePos = 
+                {
+                    y = -1500,
+                    x = 100,
+                },
+                linkedTo = 
+                {
+                    [126] = "backbracing",
+                    [116] = "backbracing",
+                    [111] = "backbracing",
+                    [99] = "backbracing",
+                    [133] = "backbracing",
+                    [119] = "backbracing",
+                    [118] = "backbracing",
+                },
+            },
+            [126] = 
+            {
+                relativePos = 
+                {
+                    y = -1500,
+                    x = 200,
+                },
+                linkedTo = 
+                {
+                    [119] = "backbracing",
+                    [134] = "backbracing",
+                    [133] = "backbracing",
+                    [118] = "backbracing",
+                    [127] = "backbracing",
+                    [116] = "backbracing",
+                    [120] = "backbracing",
+                    [125] = "backbracing",
+                },
+            },
+            [127] = 
+            {
+                relativePos = 
+                {
+                    y = -1500,
+                    x = 300,
+                },
+                linkedTo = 
+                {
+                    [126] = "backbracing",
+                    [121] = "backbracing",
+                    [133] = "backbracing",
+                    [135] = "backbracing",
+                    [120] = "backbracing",
+                    [134] = "backbracing",
+                    [128] = "backbracing",
+                    [119] = "backbracing",
+                },
+            },
+            [128] = 
+            {
+                relativePos = 
+                {
+                    y = -1500,
+                    x = 400,
+                },
+                linkedTo = 
+                {
+                    [136] = "backbracing",
+                    [121] = "backbracing",
+                    [134] = "backbracing",
+                    [129] = "backbracing",
+                    [120] = "backbracing",
+                    [122] = "backbracing",
+                    [135] = "backbracing",
+                    [127] = "backbracing",
+                },
+            },
+            [129] = 
+            {
+                relativePos = 
+                {
+                    y = -1500,
+                    x = 500,
+                },
+                linkedTo = 
+                {
+                    [137] = "backbracing",
+                    [121] = "backbracing",
+                    [123] = "backbracing",
+                    [130] = "backbracing",
+                    [135] = "backbracing",
+                    [122] = "backbracing",
+                    [128] = "backbracing",
+                    [136] = "backbracing",
+                },
+            },
+            [130] = 
+            {
+                relativePos = 
+                {
+                    y = -1500,
+                    x = 600,
+                },
+                linkedTo = 
+                {
+                    [138] = "backbracing",
+                    [129] = "backbracing",
+                    [123] = "backbracing",
+                    [137] = "backbracing",
+                    [136] = "backbracing",
+                    [131] = "backbracing",
+                    [124] = "backbracing",
+                    [122] = "backbracing",
+                },
+            },
+            [131] = 
+            {
+                relativePos = 
+                {
+                    y = -1500,
+                    x = 700,
+                },
+                linkedTo = 
+                {
+                    [132] = "backbracing",
+                    [123] = "backbracing",
+                    [130] = "backbracing",
+                    [137] = "backbracing",
+                    [138] = "backbracing",
+                    [124] = "backbracing",
+                    [117] = "backbracing",
+                },
+            },
+            [132] = 
+            {
+                relativePos = 
+                {
+                    y = -1500,
+                    x = 800,
+                },
+                linkedTo = 
+                {
+                    [138] = "armour",
+                    [124] = "backbracing",
+                    [131] = "backbracing",
+                    [117] = "armour",
+                },
+            },
+            [133] = 
+            {
+                relativePos = 
+                {
+                    y = -1650,
+                    x = 200,
+                },
+                linkedTo = 
+                {
+                    [126] = "backbracing",
+                    [143] = "StructuralAluminiumBackground",
+                    [116] = "armour",
+                    [125] = "backbracing",
+                    [134] = "armour",
+                    [144] = "StructuralAluminiumBackground",
+                    [142] = "StructuralAluminiumBackground",
+                    [127] = "backbracing",
+                },
+            },
+            [134] = 
+            {
+                relativePos = 
+                {
+                    y = -1650,
+                    x = 300,
+                },
+                linkedTo = 
+                {
+                    [126] = "backbracing",
+                    [143] = "StructuralAluminiumBackground",
+                    [133] = "armour",
+                    [144] = "StructuralAluminiumBackground",
+                    [127] = "backbracing",
+                    [145] = "StructuralAluminiumBackground",
+                    [135] = "armour",
+                    [128] = "backbracing",
+                },
+            },
+            [135] = 
+            {
+                relativePos = 
+                {
+                    y = -1650,
+                    x = 400,
+                },
+                linkedTo = 
+                {
+                    [146] = "StructuralAluminiumBackground",
+                    [136] = "armour",
+                    [129] = "backbracing",
+                    [144] = "StructuralAluminiumBackground",
+                    [134] = "armour",
+                    [145] = "StructuralAluminiumBackground",
+                    [128] = "backbracing",
+                    [127] = "backbracing",
+                },
+            },
+            [136] = 
+            {
+                relativePos = 
+                {
+                    y = -1650,
+                    x = 500,
+                },
+                linkedTo = 
+                {
+                    [146] = "StructuralAluminiumBackground",
+                    [129] = "backbracing",
+                    [147] = "StructuralAluminiumBackground",
+                    [137] = "armour",
+                    [130] = "backbracing",
+                    [145] = "StructuralAluminiumBackground",
+                    [135] = "armour",
+                    [128] = "backbracing",
+                },
+            },
+            [137] = 
+            {
+                relativePos = 
+                {
+                    y = -1650,
+                    x = 600,
+                },
+                linkedTo = 
+                {
+                    [146] = "StructuralAluminiumBackground",
+                    [136] = "armour",
+                    [147] = "StructuralAluminiumBackground",
+                    [130] = "backbracing",
+                    [138] = "armour",
+                    [131] = "backbracing",
+                    [129] = "backbracing",
+                },
+            },
+            [138] = 
+            {
+                relativePos = 
+                {
+                    y = -1650,
+                    x = 700,
+                },
+                linkedTo = 
+                {
+                    [132] = "armour",
+                    [147] = "armour",
+                    [137] = "armour",
+                    [131] = "backbracing",
+                    [130] = "backbracing",
+                },
+            },
+            [139] = 
+            {
+                relativePos = 
+                {
+                    y = -1800,
+                    x = -200,
+                },
+                linkedTo = 
+                {
+                    [114] = "StructuralAluminiumBackground",
+                    [140] = "StructuralAluminiumBackground",
+                    [113] = "StructuralAluminiumBackground",
+                    [115] = "armour",
+                    [154] = "armour",
+                },
+            },
+            [140] = 
+            {
+                relativePos = 
+                {
+                    y = -1800,
+                    x = -100,
+                },
+                linkedTo = 
+                {
+                    [112] = "StructuralAluminiumBackground",
+                    [114] = "StructuralAluminiumBackground",
+                    [154] = "StructuralAluminiumBackground",
+                    [113] = "StructuralAluminiumBackground",
+                    [153] = "StructuralAluminiumBackground",
+                    [141] = "StructuralAluminiumBackground",
+                    [139] = "StructuralAluminiumBackground",
+                },
+            },
+            [141] = 
+            {
+                relativePos = 
+                {
+                    y = -1800,
+                    x = 0,
+                },
+                linkedTo = 
+                {
+                    [112] = "StructuralAluminiumBackground",
+                    [154] = "StructuralAluminiumBackground",
+                    [140] = "StructuralAluminiumBackground",
+                    [153] = "StructuralAluminiumBackground",
+                    [113] = "StructuralAluminiumBackground",
+                    [152] = "StructuralAluminiumBackground",
+                    [142] = "StructuralAluminiumBackground",
+                    [116] = "StructuralAluminiumBackground",
+                },
+            },
+            [142] = 
+            {
+                relativePos = 
+                {
+                    y = -1800,
+                    x = 100,
+                },
+                linkedTo = 
+                {
+                    [112] = "StructuralAluminiumBackground",
+                    [143] = "StructuralAluminiumBackground",
+                    [116] = "StructuralAluminiumBackground",
+                    [151] = "StructuralAluminiumBackground",
+                    [141] = "StructuralAluminiumBackground",
+                    [152] = "StructuralAluminiumBackground",
+                    [153] = "StructuralAluminiumBackground",
+                    [133] = "StructuralAluminiumBackground",
+                },
+            },
+            [143] = 
+            {
+                relativePos = 
+                {
+                    y = -1800,
+                    x = 200,
+                },
+                linkedTo = 
+                {
+                    [151] = "StructuralAluminiumBackground",
+                    [150] = "StructuralAluminiumBackground",
+                    [133] = "StructuralAluminiumBackground",
+                    [144] = "StructuralAluminiumBackground",
+                    [134] = "StructuralAluminiumBackground",
+                    [152] = "StructuralAluminiumBackground",
+                    [142] = "StructuralAluminiumBackground",
+                    [116] = "StructuralAluminiumBackground",
+                },
+            },
+            [144] = 
+            {
+                relativePos = 
+                {
+                    y = -1800,
+                    x = 300,
+                },
+                linkedTo = 
+                {
+                    [148] = "StructuralAluminiumBackground",
+                    [143] = "StructuralAluminiumBackground",
+                    [133] = "StructuralAluminiumBackground",
+                    [151] = "StructuralAluminiumBackground",
+                    [134] = "StructuralAluminiumBackground",
+                    [145] = "StructuralAluminiumBackground",
+                    [135] = "StructuralAluminiumBackground",
+                    [150] = "StructuralAluminiumBackground",
+                },
+            },
+            [145] = 
+            {
+                relativePos = 
+                {
+                    y = -1800,
+                    x = 400,
+                },
+                linkedTo = 
+                {
+                    [146] = "StructuralAluminiumBackground",
+                    [136] = "StructuralAluminiumBackground",
+                    [150] = "StructuralAluminiumBackground",
+                    [144] = "StructuralAluminiumBackground",
+                    [134] = "StructuralAluminiumBackground",
+                    [149] = "StructuralAluminiumBackground",
+                    [135] = "StructuralAluminiumBackground",
+                    [148] = "StructuralAluminiumBackground",
+                },
+            },
+            [146] = 
+            {
+                relativePos = 
+                {
+                    y = -1800,
+                    x = 500,
+                },
+                linkedTo = 
+                {
+                    [136] = "StructuralAluminiumBackground",
+                    [147] = "StructuralAluminiumBackground",
+                    [137] = "StructuralAluminiumBackground",
+                    [148] = "StructuralAluminiumBackground",
+                    [145] = "StructuralAluminiumBackground",
+                    [135] = "StructuralAluminiumBackground",
+                    [149] = "StructuralAluminiumBackground",
+                },
+            },
+            [147] = 
+            {
+                relativePos = 
+                {
+                    y = -1800,
+                    x = 600,
+                },
+                linkedTo = 
+                {
+                    [146] = "StructuralAluminiumBackground",
+                    [136] = "StructuralAluminiumBackground",
+                    [137] = "StructuralAluminiumBackground",
+                    [138] = "armour",
+                    [149] = "armour",
+                },
+            },
+            [148] = 
+            {
+                relativePos = 
+                {
+                    y = -1900,
+                    x = 400,
+                },
+                linkedTo = 
+                {
+                    [146] = "StructuralAluminiumBackground",
+                    [150] = "armour",
+                    [144] = "StructuralAluminiumBackground",
+                    [145] = "StructuralAluminiumBackground",
+                    [149] = "armour",
+                },
+            },
+            [149] = 
+            {
+                relativePos = 
+                {
+                    y = -1900,
+                    x = 500,
+                },
+                linkedTo = 
+                {
+                    [147] = "armour",
+                    [145] = "StructuralAluminiumBackground",
+                    [146] = "StructuralAluminiumBackground",
+                    [148] = "armour",
+                },
+            },
+            [150] = 
+            {
+                relativePos = 
+                {
+                    y = -1900,
+                    x = 300,
+                },
+                linkedTo = 
+                {
+                    [143] = "StructuralAluminiumBackground",
+                    [144] = "StructuralAluminiumBackground",
+                    [148] = "armour",
+                    [145] = "StructuralAluminiumBackground",
+                    [151] = "armour",
+                },
+            },
+            [151] = 
+            {
+                relativePos = 
+                {
+                    y = -1900,
+                    x = 200,
+                },
+                linkedTo = 
+                {
+                    [143] = "StructuralAluminiumBackground",
+                    [144] = "StructuralAluminiumBackground",
+                    [152] = "armour",
+                    [142] = "StructuralAluminiumBackground",
+                    [150] = "armour",
+                },
+            },
+            [152] = 
+            {
+                relativePos = 
+                {
+                    y = -1900,
+                    x = 100,
+                },
+                linkedTo = 
+                {
+                    [153] = "armour",
+                    [143] = "StructuralAluminiumBackground",
+                    [151] = "armour",
+                    [141] = "StructuralAluminiumBackground",
+                    [142] = "StructuralAluminiumBackground",
+                },
+            },
+            [153] = 
+            {
+                relativePos = 
+                {
+                    y = -1900,
+                    x = 0,
+                },
+                linkedTo = 
+                {
+                    [140] = "StructuralAluminiumBackground",
+                    [141] = "StructuralAluminiumBackground",
+                    [152] = "armour",
+                    [142] = "StructuralAluminiumBackground",
+                    [154] = "armour",
+                },
+            },
+            [154] = 
+            {
+                relativePos = 
+                {
+                    y = -1900,
+                    x = -100,
+                },
+                linkedTo = 
+                {
+                    [139] = "armour",
+                    [140] = "StructuralAluminiumBackground",
+                    [141] = "StructuralAluminiumBackground",
+                    [153] = "armour",
+                },
+            },
+        },
+    },
+    
 }
